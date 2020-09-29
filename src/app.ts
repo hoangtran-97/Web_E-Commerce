@@ -18,7 +18,8 @@ import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 
 const app = express()
-const mongoUrl = MONGODB_URI
+const mongoUrl =
+  'mongodb+srv://test_user:test@cluster0.knwkw.mongodb.net/test?retryWrites=true&w=majority'
 
 mongoose.Promise = bluebird
 mongoose
@@ -29,6 +30,7 @@ mongoose
   })
   .then(() => {
     /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
+    console.log('MongoDB connection. ')
   })
   .catch((err: Error) => {
     console.log(
