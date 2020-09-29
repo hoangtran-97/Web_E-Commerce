@@ -1,12 +1,12 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from "express";
 
-import Movie from '../models/Movie'
-import MovieService from '../services/movie'
+import Movie from "../models/Movie";
+import MovieService from "../services/movie";
 import {
   NotFoundError,
   BadRequestError,
   InternalServerError,
-} from '../helpers/apiError'
+} from "../helpers/apiError";
 
 // POST /movies
 export const createMovie = async (
@@ -15,7 +15,7 @@ export const createMovie = async (
   next: NextFunction
 ) => {
   try {
-    const { name, publishedYear, genres, duration, characters } = req.body
+    const { name, publishedYear, genres, duration, characters } = req.body;
 
     const movie = new Movie({
       name,
@@ -23,18 +23,18 @@ export const createMovie = async (
       genres,
       duration,
       characters,
-    })
+    });
 
-    await MovieService.create(movie)
-    res.json(movie)
+    await MovieService.create(movie);
+    res.json(movie);
   } catch (error) {
-    if (error.name === 'ValidationError') {
-      next(new BadRequestError('Invalid Request', error))
+    if (error.name === "ValidationError") {
+      next(new BadRequestError("Invalid Request", error));
     } else {
-      next(new InternalServerError('Internal Server Error', error))
+      next(new InternalServerError("Internal Server Error", error));
     }
   }
-}
+};
 
 // PUT /movies/:movieId
 export const updateMovie = async (
@@ -43,14 +43,14 @@ export const updateMovie = async (
   next: NextFunction
 ) => {
   try {
-    const update = req.body
-    const movieId = req.params.movieId
-    const updatedMovie = await MovieService.update(movieId, update)
-    res.json(updatedMovie)
+    const update = req.body;
+    const movieId = req.params.movieId;
+    const updatedMovie = await MovieService.update(movieId, update);
+    res.json(updatedMovie);
   } catch (error) {
-    next(new NotFoundError('Movie not found', error))
+    next(new NotFoundError("Movie not found", error));
   }
-}
+};
 
 // DELETE /movies/:movieId
 export const deleteMovie = async (
@@ -59,12 +59,12 @@ export const deleteMovie = async (
   next: NextFunction
 ) => {
   try {
-    await MovieService.deleteMovie(req.params.movieId)
-    res.status(204).end()
+    await MovieService.deleteMovie(req.params.movieId);
+    res.status(204).end();
   } catch (error) {
-    next(new NotFoundError('Movie not found', error))
+    next(new NotFoundError("Movie not found", error));
   }
-}
+};
 
 // GET /movies/:movieId
 export const findById = async (
@@ -73,11 +73,11 @@ export const findById = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await MovieService.findById(req.params.movieId))
+    res.json(await MovieService.findById(req.params.movieId));
   } catch (error) {
-    next(new NotFoundError('Movie not found', error))
+    next(new NotFoundError("Movie not found", error));
   }
-}
+};
 
 // GET /movies
 export const findAll = async (
@@ -86,8 +86,8 @@ export const findAll = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await MovieService.findAll())
+    res.json(await MovieService.findAll());
   } catch (error) {
-    next(new NotFoundError('Movies not found', error))
+    next(new NotFoundError("Movies not found", error));
   }
-}
+};
