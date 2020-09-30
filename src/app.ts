@@ -19,25 +19,26 @@ import apiContentType from "./middlewares/apiContentType";
 
 const app = express();
 const mongoUrl =
-  "mongodb+srv://test_user:test@cluster0.knwkw.mongodb.net/test?retryWrites=true&w=majority";
+    "mongodb+srv://test_user:test@cluster0.knwkw.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.Promise = bluebird;
 mongoose
-  .connect(mongoUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
-    console.log("MongoDB connection. ");
-  })
-  .catch((err: Error) => {
-    console.log(
-      "MongoDB connection error. Please make sure MongoDB is running. " + err
-    );
-    process.exit(1);
-  });
+    .connect(mongoUrl, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
+        console.log("MongoDB connection. ");
+    })
+    .catch((err: Error) => {
+        console.log(
+            "MongoDB connection error. Please make sure MongoDB is running. " +
+                err
+        );
+        process.exit(1);
+    });
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
