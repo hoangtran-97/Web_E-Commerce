@@ -8,6 +8,18 @@ import {
     InternalServerError,
 } from "../helpers/apiError";
 
+export const findById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        res.json(await UserService.findById(req.params.userId));
+    } catch (error) {
+        next(new NotFoundError("User not found", error));
+    }
+};
+
 export const createUser = async (
     req: Request,
     res: Response,
@@ -64,7 +76,13 @@ export const updateUser = async (
     next: NextFunction
 ) => {
     try {
-    } catch (error) {}
+        const update = req.body;
+        const userId = req.params.userId;
+        const updatedUser = await UserService.update(userId, update);
+        res.json(updatedUser);
+    } catch (error) {
+        next(new NotFoundError("User not found", error));
+    }
 };
 export const forgotPassword = async (
     req: Request,
@@ -73,4 +91,15 @@ export const forgotPassword = async (
 ) => {
     try {
     } catch (error) {}
+};
+export const findAll = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        res.json(await UserService.findAll());
+    } catch (error) {
+        next(new NotFoundError("Users not found", error));
+    }
 };

@@ -6,14 +6,18 @@ import {
     logout,
     updateUser,
     forgotPassword,
+    findAll,
+    findById,
 } from "../controllers/user";
 
 const router = express.Router();
 
-router.post("/", createUser);
-router.post("/login", login);
+router.get("/", findAll);
+router.get("/:userId", findById);
 router.get("/logout", logout);
-router.put("/:userId", updateUser);
+router.post("/", createUser);
 router.post("/forgotPasswordRequest", forgotPassword);
+router.post("/login", login);
+router.put("/:userId", updateUser);
 
 export default router;

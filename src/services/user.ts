@@ -1,5 +1,22 @@
 import User, { UserDocument } from "../models/User";
 
+const findById = (userId: string): Promise<UserDocument> => {
+    return User.findById(userId)
+        .exec()
+        .then(user => {
+            if (!user) {
+                throw new Error(`User ${userId} not found`);
+            }
+            return user;
+        });
+};
+
+const findAll = (): Promise<UserDocument[]> => {
+    return User.find()
+        .sort({ userName: 1 })
+        .exec();
+};
+
 const create = (user: UserDocument): Promise<UserDocument> => {
     return user.save();
 };
@@ -40,6 +57,8 @@ const update = (
 };
 
 export default {
+    findById,
+    findAll,
     create,
     update,
 };
