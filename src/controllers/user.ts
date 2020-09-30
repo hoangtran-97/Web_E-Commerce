@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import User from "../models/User";
+import UserService from "../services/user";
 import {
     NotFoundError,
     BadRequestError,
@@ -13,7 +14,33 @@ export const createUser = async (
     next: NextFunction
 ) => {
     try {
-    } catch (error) {}
+        const {
+            userName,
+            firstName,
+            lastName,
+            email,
+            isAdmin,
+            isBanned,
+            password,
+        } = req.body;
+        const user = new User({
+            userName,
+            firstName,
+            lastName,
+            email,
+            isAdmin,
+            isBanned,
+            password,
+        });
+        await UserService.create(user);
+        res.json(user);
+    } catch (error) {
+        if (error.name === "ValidationError") {
+            next(new BadRequestError("Invalid Request", error));
+        } else {
+            next(new InternalServerError("Internal Server Error", error));
+        }
+    }
 };
 export const login = async (
     req: Request,
