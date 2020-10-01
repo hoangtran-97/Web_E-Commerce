@@ -8,6 +8,18 @@ import {
     InternalServerError,
 } from "../helpers/apiError";
 
+export const findAll = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        res.json(await UserService.findAll());
+    } catch (error) {
+        next(new NotFoundError("Users not found", error));
+    }
+};
+
 export const findById = async (
     req: Request,
     res: Response,
@@ -91,15 +103,4 @@ export const forgotPassword = async (
 ) => {
     try {
     } catch (error) {}
-};
-export const findAll = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    try {
-        res.json(await UserService.findAll());
-    } catch (error) {
-        next(new NotFoundError("Users not found", error));
-    }
 };
