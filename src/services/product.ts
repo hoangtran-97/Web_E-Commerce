@@ -17,8 +17,8 @@ const findById = (productId: string): Promise<ProductDocument> => {
         });
 };
 
-const findByName = (productName: string): Promise<ProductDocument> => {
-    return Product.findById(productName)
+const findByName = (productName: string): Promise<ProductDocument[]> => {
+    return Product.find({ name: productName })
         .exec()
         .then(product => {
             if (!product) {
@@ -29,8 +29,8 @@ const findByName = (productName: string): Promise<ProductDocument> => {
 };
 const findByCategories = (
     productCategories: string
-): Promise<ProductDocument> => {
-    return Product.findById(productCategories)
+): Promise<ProductDocument[]> => {
+    return Product.find({ categories: productCategories })
         .exec()
         .then(product => {
             if (!product) {
@@ -39,8 +39,10 @@ const findByCategories = (
             return product;
         });
 };
-const findByVariants = (productVariants: string): Promise<ProductDocument> => {
-    return Product.findById(productVariants)
+const findByVariants = (
+    productVariants: string
+): Promise<ProductDocument[]> => {
+    return Product.find({ variants: productVariants })
         .exec()
         .then(product => {
             if (!product) {

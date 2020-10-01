@@ -15,9 +15,9 @@ const router = express.Router();
 
 router.get("/", findAll);
 router.get("/:productId", findById);
-router.get("/:productName", findByName);
-router.get("/:productCategories", findByCategories);
-router.get("/:productVariants", findByVariants);
+router.get("/findByName/:productName", findByName);
+router.get("/findByCategories/:productCategories", findByCategories);
+router.get("/findByVariants/:productVariants", findByVariants);
 
 router.post("/", createProduct);
 
