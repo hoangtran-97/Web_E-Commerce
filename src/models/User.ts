@@ -1,4 +1,5 @@
 import mongoose, { Document } from "mongoose";
+import { ProductDocument } from "./Product";
 
 export type UserDocument = Document & {
     userName: string;
@@ -8,6 +9,7 @@ export type UserDocument = Document & {
     isAdmin: boolean;
     isBanned: boolean;
     password: string;
+    cart: ProductDocument[];
 };
 
 const userSchema = new mongoose.Schema({
@@ -37,6 +39,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 });
 
 export default mongoose.model<UserDocument>("User", userSchema);
