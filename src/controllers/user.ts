@@ -39,6 +39,7 @@ export const createUser = async (
 ) => {
     try {
         const {
+            cart,
             userName,
             firstName,
             lastName,
@@ -48,6 +49,7 @@ export const createUser = async (
             password,
         } = req.body;
         const user = new User({
+            cart,
             userName,
             firstName,
             lastName,
