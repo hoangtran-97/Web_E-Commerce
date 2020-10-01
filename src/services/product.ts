@@ -100,4 +100,3 @@ export default {
     update,
     deleteProduct,
 };
-//TODO: update User cart in controller and services

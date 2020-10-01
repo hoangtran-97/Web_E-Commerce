@@ -52,6 +52,9 @@ const update = (
             if (update.password) {
                 user.password = update.password;
             }
+            if (update.cart) {
+                user.cart = update.cart;
+            }
             return user.save();
         });
 };
