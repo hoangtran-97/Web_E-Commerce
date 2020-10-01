@@ -20,8 +20,7 @@ import apiErrorHandler from "./middlewares/apiErrorHandler";
 import apiContentType from "./middlewares/apiContentType";
 
 const app = express();
-const mongoUrl =
-    "mongodb+srv://test_user:test@cluster0.knwkw.mongodb.net/test?retryWrites=true&w=majority";
+const mongoUrl = MONGODB_URI;
 
 mongoose.Promise = bluebird;
 mongoose
