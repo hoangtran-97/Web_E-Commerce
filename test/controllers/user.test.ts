@@ -15,6 +15,7 @@ const createUser = async (override?: Partial<UserDocument>) => {
         isAdmin: true,
         isBanned: false,
         password: "asdasdasd",
+        cart: ["5e57b77b5744fa0b461c7905"],
     };
 
     if (override) {
