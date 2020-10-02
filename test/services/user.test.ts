@@ -1,4 +1,3 @@
-import { use } from "chai";
 import User from "../../src/models/User";
 import UserService from "../../src/services/user";
 import * as dbHelper from "../db-helper";
