@@ -160,10 +160,10 @@ describe("product controller", () => {
         });
 
         const res3 = await request(app).get(
-            `/api/v1/products/productVariants/${res2.body.variants[0]}`
+            `/api/v1/products/findByVariants/${res2.body.variants[0]}`
         );
 
-        expect(res3.body.length).toEqual(2);
+        expect(res3.body.length).toEqual(1);
     });
 
     it("should update an existing product", async () => {
