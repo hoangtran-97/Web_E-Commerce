@@ -9,7 +9,7 @@ export type UserDocument = Document & {
     isAdmin: boolean;
     isBanned: boolean;
     password: string;
-    cart: ProductDocument[];
+    cart: string[];
 };
 
 const userSchema = new mongoose.Schema({
