@@ -1,8 +1,14 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
+import axios from "axios";
 
-const responseGoogle = (response: any) => {
+const responseGoogle = async (response: any) => {
     console.log(response);
+    console.log(response.tokenId);
+
+    const res = await axios.post("http://localhost:3001/auth/google-token-id", {
+        tokenId: response.tokenId,
+    });
 };
 
 export const GoogleButton = () => (

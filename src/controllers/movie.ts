@@ -16,7 +16,6 @@ export const createMovie = async (
 ) => {
     try {
         const { name, publishedYear, genres, duration, characters } = req.body;
-
         const movie = new Movie({
             name,
             publishedYear,
