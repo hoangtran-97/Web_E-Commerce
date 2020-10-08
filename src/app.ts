@@ -52,11 +52,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
 
-// Use movie router
 app.use("/api/v1/movies", movieRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
-app.use("api/v1/auth", authRouter);
+app.use("/api/v1/auth", authRouter);
 
 // Custom API error handler
 app.use(apiErrorHandler);

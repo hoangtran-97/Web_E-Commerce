@@ -1,4 +1,4 @@
-const googleTokenId = (tokenId: string) => {
+const googleTokenId = (tokenId: string): string => {
     return tokenId;
 };
 

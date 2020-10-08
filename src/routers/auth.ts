@@ -1,9 +1,8 @@
 import express from "express";
 
-const router = express.Router();
-
 import { googleTokenId } from "../controllers/auth";
 
-router.post("/google-token-id", googleTokenId);
+const router = express.Router();
+router.post("/googleTokenId", googleTokenId);
 
 export default router;

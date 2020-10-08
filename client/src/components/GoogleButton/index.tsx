@@ -6,7 +6,7 @@ const responseGoogle = async (response: any) => {
     console.log(response);
     console.log(response.tokenId);
 
-    const res = await axios.post("http://localhost:3001/auth/google-token-id", {
+    const res = await axios.post("http://localhost:3001/auth/googleTokenId", {
         tokenId: response.tokenId,
     });
 };
