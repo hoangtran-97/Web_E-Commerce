@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Request, Response, NextFunction } from "express";
 
 import AuthService from "../services/auth";
@@ -13,9 +14,9 @@ export const googleTokenId = async (
     next: NextFunction
 ) => {
     try {
-        const { tokenId } = req.body;
-        await AuthService.googleTokenId(tokenId);
-        res.json(tokenId);
+        const { id_token } = req.body;
+        await AuthService.googleTokenId(id_token);
+        res.json(id_token);
     } catch (error) {
         if (error.name === "ValidationError") {
             next(new BadRequestError("Invalid Request", error));
