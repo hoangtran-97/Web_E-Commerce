@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import passport from "passport";
 
 import User from "../models/User";
@@ -24,18 +25,29 @@ passport.use(
             clientID: GOOGLE_CLIENT_ID,
         },
         function(parsedToken: any, googleId: string, done: any) {
-            const { payload } = parsedToken;
-            console.log("_________googleID_______", googleId);
-            console.log("_________payload_______", payload);
+            const {
+                email,
+                name,
+                given_name,
+                family_name,
+            } = parsedToken.payload;
 
             User.findOne({ googleId: googleId }).then(currentUSer => {
                 if (currentUSer) {
                     done(null, currentUSer);
                 } else {
-                    new User({ googleId: payload.id }).save().then(newUser => {
-                        console.log(newUser);
-                        done(null, newUser);
-                    });
+                    new User({
+                        googleId: googleId,
+                        email: email,
+                        userName: name,
+                        firstName: given_name,
+                        lastName: family_name,
+                    })
+                        .save()
+                        .then(newUser => {
+                            console.log(newUser);
+                            done(null, newUser);
+                        });
                 }
             });
         }
