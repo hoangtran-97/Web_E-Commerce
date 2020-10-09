@@ -5,10 +5,16 @@ import axios from "axios";
 const responseGoogle = async (response: any) => {
     console.log(response);
     console.log(response.tokenId);
-
-    const res = await axios.post("http://localhost:3001/auth/googleTokenId", {
-        tokenId: response.tokenId,
+    axios.get("http://localhost:3001/api/v1/auth/").then(response => {
+        console.log(response);
     });
+
+    const res = await axios.post(
+        "http://localhost:3001/api/v1/auth/googleTokenId",
+        {
+            tokenId: response.tokenId,
+        }
+    );
 };
 
 export const GoogleButton = () => (
