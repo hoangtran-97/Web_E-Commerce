@@ -2,6 +2,8 @@ import passport from "passport";
 
 import User from "../models/User";
 
+import logger from "../util/logger";
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const GoogleTokenStrategy = require("passport-google-id-token");
 const GOOGLE_CLIENT_ID =
@@ -23,7 +25,10 @@ passport.use(
         },
         function(parsedToken: any, googleId: string, done: any) {
             const { payload } = parsedToken;
-            User.findOne({ googleId: payload.id }).then(currentUSer => {
+            console.log("_________googleID_______", googleId);
+            console.log("_________payload_______", payload);
+
+            User.findOne({ googleId: googleId }).then(currentUSer => {
                 if (currentUSer) {
                     done(null, currentUSer);
                 } else {

@@ -20,6 +20,7 @@ import authRouter from "./routers/auth";
 
 import apiErrorHandler from "./middlewares/apiErrorHandler";
 import apiContentType from "./middlewares/apiContentType";
+import "./config/passport";
 
 const app = express();
 const mongoUrl = MONGODB_URI;
@@ -52,8 +53,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
-app.use(cors());
 app.use(passport.initialize());
+app.use(passport.session());
+app.use(cors());
 
 app.use("/api/v1/movies", movieRouter);
 app.use("/api/v1/users", userRouter);
