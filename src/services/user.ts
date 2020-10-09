@@ -53,6 +53,9 @@ const update = (
             if (update.password) {
                 user.password = update.password;
             }
+            if (update.googleId) {
+                user.googleId = update.googleId;
+            }
             if (update.cart) {
                 user.cart = update.cart;
             }

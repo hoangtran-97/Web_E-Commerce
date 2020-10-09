@@ -46,6 +46,7 @@ export const createUser = async (
             email,
             isAdmin,
             isBanned,
+            googleId,
             password,
         } = req.body;
         const user = new User({
@@ -56,6 +57,7 @@ export const createUser = async (
             email,
             isAdmin,
             isBanned,
+            googleId,
             password,
         });
         await UserService.create(user);

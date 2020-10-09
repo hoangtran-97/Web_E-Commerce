@@ -3,18 +3,17 @@ import { GoogleLogin } from "react-google-login";
 import axios from "axios";
 
 const responseGoogle = async (response: any) => {
-    console.log(response);
-    console.log(response.tokenId);
     axios.get("http://localhost:3001/api/v1/auth/").then(response => {
-        console.log(response);
+        console.log("______TEST_______", response);
     });
 
     const res = await axios.post(
         "http://localhost:3001/api/v1/auth/googleTokenId",
         {
-            tokenId: response.tokenId,
+            id_token: response.tokenId,
         }
     );
+    console.log("_______RES_______", res);
 };
 
 export const GoogleButton = () => (
