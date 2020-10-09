@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { Request, Response, NextFunction } from "express";
-
+import jwt from "jsonwebtoken";
 import AuthService from "../services/auth";
 import {
     NotFoundError,
@@ -15,8 +15,8 @@ export const googleTokenId = async (
 ) => {
     try {
         const { id_token } = req.body;
-        await AuthService.googleTokenId(id_token);
-        res.json(id_token);
+        const token = await AuthService.googleTokenId(id_token);
+        res.send(token);
     } catch (error) {
         if (error.name === "ValidationError") {
             next(new BadRequestError("Invalid Request", error));

@@ -9,10 +9,7 @@ router.get("/", findAll);
 router.post(
     "/googleTokenId",
     passport.authenticate("google-id-token"),
-    function(req, res) {
-        // do something with req.user
-        res.send(req.user ? 200 : 401);
-    }
+    googleTokenId
 );
 
 export default router;
