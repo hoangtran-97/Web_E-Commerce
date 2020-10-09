@@ -53,6 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
 app.use(cors());
+app.use(passport.initialize());
 
 app.use("/api/v1/movies", movieRouter);
 app.use("/api/v1/users", userRouter);
