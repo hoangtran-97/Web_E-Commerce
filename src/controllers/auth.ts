@@ -15,8 +15,9 @@ export const googleTokenId = async (
 ) => {
     try {
         const { id_token } = req.body;
+        const { user } = req;
         const token = await AuthService.googleTokenId(id_token);
-        res.send(token);
+        res.send({ token, user });
     } catch (error) {
         if (error.name === "ValidationError") {
             next(new BadRequestError("Invalid Request", error));
