@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+
 import AuthService from "../services/auth";
 import {
     NotFoundError,
