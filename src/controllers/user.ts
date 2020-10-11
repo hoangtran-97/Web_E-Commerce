@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
 
 import User from "../models/User";
 import UserService from "../services/user";
@@ -8,39 +7,14 @@ import {
     BadRequestError,
     InternalServerError,
 } from "../helpers/apiError";
+import { verifyToken } from "../middlewares/verifyToken";
 
-const getTokenFrom = (req: Request) => {
-    const authorization = req.get("authorization");
-    if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
-        return authorization.substring(7);
-    }
-    return null;
-};
-
-const verifyToken = (req: Request, res: Response) => {
-    const token = getTokenFrom(req);
-    console.log("token_________", token);
-
-    if (token) {
-        const decodedToken = jwt.verify(
-            token,
-            process.env.JWT_SECRET || "secret"
-        );
-        console.log("decoded_________", decodedToken);
-        if (!decodedToken) {
-            return res.status(401).json({ error: "token missing or invalid" });
-        }
-    } else {
-        return res.status(401).json({ error: "token missing or invalid" });
-    }
-};
 export const findAll = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        verifyToken(req, res);
         res.json(await UserService.findAll());
     } catch (error) {
         next(new NotFoundError("Users not found", error));
@@ -53,6 +27,7 @@ export const findById = async (
     next: NextFunction
 ) => {
     try {
+        verifyToken(req, res, next);
         res.json(await UserService.findById(req.params.userId));
     } catch (error) {
         next(new NotFoundError("User not found", error));
