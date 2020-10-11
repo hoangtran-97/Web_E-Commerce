@@ -94,6 +94,7 @@ export const updateUser = async (
     next: NextFunction
 ) => {
     try {
+        verifyToken(req, res, next);
         const update = req.body;
         const userId = req.params.userId;
         const updatedUser = await UserService.update(userId, update);
