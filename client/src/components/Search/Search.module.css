@@ -10,7 +10,7 @@
 .container__search {
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
         0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-    width: 55%;
+    width: 45%;
     display: flex;
     justify-content: space-between;
     align-items: center;
