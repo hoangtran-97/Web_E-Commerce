@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 import { Product, AppState } from "../types";
 import { addProduct, removeProduct } from "../redux/actions";
-import { GoogleButton } from "../components/GoogleButton";
+import { GoogleLoginButton } from "../components/GoogleLoginButton";
+import { GoogleLogoutButton } from "../components/GoogleLogoutButton";
 
 const names = ["Apple", "Orange", "Avocado", "Banana", "Cucumber", "Carrot"];
 
@@ -23,7 +24,8 @@ export default function Home() {
 
     return (
         <>
-            <GoogleButton></GoogleButton>
+            <GoogleLoginButton></GoogleLoginButton>
+            <GoogleLogoutButton></GoogleLogoutButton>
             <h1>Home page</h1>
             {products.length <= 0 && <div>No products in cart</div>}
             <ul>

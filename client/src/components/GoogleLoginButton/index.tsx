@@ -12,7 +12,7 @@ const responseGoogle = async (response: any) => {
     console.log("_______RES_______", res);
 };
 
-export const GoogleButton = () => (
+export const GoogleLoginButton = () => (
     <GoogleLogin
         clientId="676751270206-bih2psso6vca65bg6ecicj7i4o42h940.apps.googleusercontent.com"
         buttonText="Login"
