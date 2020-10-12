@@ -6,7 +6,7 @@ export const Header = () => {
         <div className={styles.container}>
             <p>E-Commerce</p>
             <p>Search</p>
-            <div>
+            <div className={styles.right}>
                 <p>Login</p>
                 <p>Cart</p>
             </div>
