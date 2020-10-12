@@ -17,8 +17,7 @@ export const Header = () => {
                     autoplay
                     loop
                     src={require("./shoppin.json")}
-                    speed={100000000}
-                    style={{ height: "70px", width: "70px" }}
+                    style={{ height: "90px", width: "90px" }}
                 ></Player>
                 <p style={tx} className={styles.left__text}>
                     E-Commerce
