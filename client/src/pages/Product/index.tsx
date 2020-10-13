@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
 
 export const Product = () => {
-    return <div>Product Page</div>;
+    const { theme } = useContext(ThemeContext);
+    const bg = { backgroundColor: theme.background };
+
+    return (
+        <div className={styles.container} style={bg}>
+            Product Page
+        </div>
+    );
 };

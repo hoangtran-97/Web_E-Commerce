@@ -16,7 +16,6 @@ export const Header = () => {
     const tx = { color: theme.text };
     const regex = RegExp("/product");
     const result = regex.test(pathname);
-    console.log(result);
 
     return (
         <div className={styles.container} style={fg}>
