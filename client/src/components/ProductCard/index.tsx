@@ -14,7 +14,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 <img alt="product_image" className={styles.img} src={img}></img>
             </div>
             <p>{name}</p>
-            <p>{price}</p>
+            <p>{`${price} EUR`}</p>
         </button>
     );
 };
