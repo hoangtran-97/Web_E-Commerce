@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { ProductCard } from "../../components/ProductCard";
 
 import { ThemeContext } from "../../context";
 import styles from "./Home.module.css";
@@ -10,7 +11,14 @@ export const Home = () => {
     const tx = { color: theme.text };
     return (
         <div className={styles.container} style={bg}>
-            <p>Home page</p>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
+            <ProductCard></ProductCard>
         </div>
     );
 };
