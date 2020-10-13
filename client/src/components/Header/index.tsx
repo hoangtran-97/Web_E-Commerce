@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { Player } from "@lottiefiles/react-lottie-player";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import { Search } from "../Search";
@@ -9,6 +9,7 @@ import styles from "./Header.module.css";
 export const Header = () => {
     const { theme } = useContext(ThemeContext);
     const fg = { backgroundColor: theme.foreground };
+    const bg = { backgroundColor: theme.background };
     const tx = { color: theme.text };
     return (
         <div className={styles.container} style={fg}>
@@ -30,20 +31,14 @@ export const Header = () => {
                 <p className={styles.login} style={tx}>
                     Login
                 </p>
-                <button
-                    className={styles.button__cart}
-                    // style={{ backgroundColor: theme.foreground }}
-                >
+                <button className={styles.button__cart}>
                     <AiOutlineShoppingCart
                         className={styles.icon__cart}
-                        style={{ color: theme.text }}
+                        style={tx}
                     ></AiOutlineShoppingCart>
                     <div
                         className={styles.cart__counter}
-                        style={{
-                            color: theme.text,
-                            backgroundColor: theme.background,
-                        }}
+                        style={{ ...tx, ...bg }}
                     >
                         5
                     </div>
