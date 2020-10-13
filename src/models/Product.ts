@@ -6,6 +6,7 @@ export type ProductDocument = Document & {
     categories: string[];
     variants: string[];
     sizes: number[];
+    img: string;
 };
 
 const productSchema = new mongoose.Schema({
@@ -28,6 +29,10 @@ const productSchema = new mongoose.Schema({
     },
     sizes: {
         type: [Number],
+        required: true,
+    },
+    img: {
+        type: String,
         required: true,
     },
 });

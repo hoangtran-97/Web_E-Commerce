@@ -78,13 +78,21 @@ export const createProduct = async (
     next: NextFunction
 ) => {
     try {
-        const { name, description, categories, variants, sizes } = req.body;
+        const {
+            name,
+            description,
+            categories,
+            variants,
+            sizes,
+            img,
+        } = req.body;
         const product = new Product({
             name,
             description,
             categories,
             variants,
             sizes,
+            img,
         });
         await ProductService.create(product);
         res.json(product);

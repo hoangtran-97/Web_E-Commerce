@@ -81,6 +81,9 @@ const update = (
             if (update.sizes) {
                 product.sizes = update.sizes;
             }
+            if (update.img) {
+                product.img = update.img;
+            }
 
             return product.save();
         });
