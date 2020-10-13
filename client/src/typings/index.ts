@@ -4,6 +4,22 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const TOGGLE_DIALOG = "TOGGLE_DIALOG";
 export const RECEIVE_COUNTRIES = "RECEIVE_COUNTRIES";
 
+export type Product = {
+    _id: string;
+    name: string;
+    description: string;
+    categories: string[];
+    variants: string[];
+    sizes: number[];
+    img: string;
+    imgLarge: string;
+    price: number;
+};
+
+export type ProductCardProps = {
+    product: Product;
+};
+
 export type RouteParam = {
     id: string;
 };

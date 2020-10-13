@@ -1,23 +1,20 @@
 import React, { useContext } from "react";
 
+import { ProductCardProps } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./ProductCard.module.css";
 
-export const ProductCard = () => {
+export const ProductCard = ({ product }: ProductCardProps) => {
     const { theme } = useContext(ThemeContext);
     const fg = { backgroundColor: theme.foreground };
-    const bg = { backgroundColor: theme.background };
-    const tx = { color: theme.text };
+    const { name, price, img } = product;
     return (
         <button className={styles.container} style={fg}>
             <div className={styles.img__container}>
-                <img
-                    className={styles.img}
-                    src="https://source.unsplash.com/400x400/?fashion"
-                ></img>
+                <img alt="product_image" className={styles.img} src={img}></img>
             </div>
-            <p>Title</p>
-            <p>Price</p>
+            <p>{name}</p>
+            <p>{price}</p>
         </button>
     );
 };
