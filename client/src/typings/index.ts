@@ -12,7 +12,6 @@ export type Product = {
     variants: string[];
     sizes: number[];
     img: string;
-    imgLarge: string;
     price: number;
 };
 

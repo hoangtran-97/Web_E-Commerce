@@ -84,9 +84,6 @@ const update = (
             if (update.img) {
                 product.img = update.img;
             }
-            if (update.imgLarge) {
-                product.imgLarge = update.imgLarge;
-            }
             if (update.price) {
                 product.price = update.price;
             }

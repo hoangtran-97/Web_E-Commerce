@@ -85,7 +85,6 @@ export const createProduct = async (
             variants,
             sizes,
             img,
-            imgLarge,
             price,
         } = req.body;
         const product = new Product({
@@ -95,7 +94,6 @@ export const createProduct = async (
             variants,
             sizes,
             img,
-            imgLarge,
             price,
         });
         await ProductService.create(product);
