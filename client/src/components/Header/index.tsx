@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -8,9 +9,15 @@ import styles from "./Header.module.css";
 
 export const Header = () => {
     const { theme } = useContext(ThemeContext);
+    const location = useLocation();
+    const { pathname } = location;
     const fg = { backgroundColor: theme.foreground };
     const bg = { backgroundColor: theme.background };
     const tx = { color: theme.text };
+    const regex = RegExp("/product");
+    const result = regex.test(pathname);
+    console.log(result);
+
     return (
         <div className={styles.container} style={fg}>
             <div className={styles.left}>
@@ -24,8 +31,7 @@ export const Header = () => {
                     E-Commerce
                 </p>
             </div>
-
-            <Search></Search>
+            {!result && <Search />}
             <div className={styles.right}>
                 <p style={tx}>Welcome guest</p>
                 <p className={styles.login} style={tx}>
