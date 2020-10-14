@@ -2,7 +2,7 @@
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const TOGGLE_DIALOG = "TOGGLE_DIALOG";
-export const RECEIVE_COUNTRIES = "RECEIVE_COUNTRIES";
+export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
 
 export type Product = {
     _id: string;
@@ -14,6 +14,17 @@ export type Product = {
     img: string;
     price: number;
 };
+
+export type ReceiveProductsAction = {
+    type: typeof RECEIVE_PRODUCTS;
+    payload: {
+        products: Product;
+    };
+};
+export type ProductActions =
+    | AddProductAction
+    | RemoveProductAction
+    | ReceiveProductsAction;
 
 export type ProductCardProps = {
     product: Product;
@@ -27,15 +38,6 @@ export type ContextChildrenProps = {
     children: React.ReactNode;
 };
 
-export type CountryListProps = {
-    countries: any;
-    width: number;
-};
-export type CountryListItemProps = {
-    country: any;
-    key: string;
-    width: number;
-};
 export type FilterProps = {
     width: number;
     activeFilter: string | null;
@@ -93,23 +95,10 @@ export type ToggleDialogAction = {
         dialog: DialogType;
     };
 };
-//Country
-export type ReceiveCountriesAction = {
-    type: typeof RECEIVE_COUNTRIES;
-    payload: {
-        countries: any;
-    };
-};
-export type CountriesActions = ReceiveCountriesAction;
-export type CountriesState = {
-    list: any[];
-};
-export type Country = any;
 
 export type UiActions = ToggleDialogAction;
 
 // Use this union in reducer
-export type ProductActions = AddProductAction | RemoveProductAction;
 
 export type ProductState = {
     inCart: any[];
@@ -125,5 +114,4 @@ export type UiState = {
 export type AppState = {
     product: ProductState;
     ui: UiState;
-    countries: CountriesState;
 };
