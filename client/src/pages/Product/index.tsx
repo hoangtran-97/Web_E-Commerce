@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useFormik } from "formik";
 
 import { AppState, RouteParam } from "../../typings";
 import { ThemeContext } from "../../context";
@@ -18,6 +19,14 @@ export const Product = () => {
     const product = useSelector((state: AppState) =>
         state.product.list.find(p => p._id === id)
     );
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+        },
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
     if (!product) {
         return (
             <div className={styles.container} style={{ ...bg, ...tx }}>
@@ -50,11 +59,20 @@ export const Product = () => {
                         src={img}
                     ></img>
                 </div>
-                <div>
-                    <p>{name}</p>
+                <form onSubmit={formik.handleSubmit}>
+                    <p>Title: {name}</p>
                     <p>{price}</p>
                     <p>{description}</p>
-                </div>
+                    <label htmlFor="email">Email Address</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                    />
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
     );
