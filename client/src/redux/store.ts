@@ -20,7 +20,8 @@ export default function makeStore(initialState = initState) {
     const sagaMiddleware = createSagaMiddleware();
     const middlewares = [sagaMiddleware, thunk];
     let composeEnhancers = compose;
-
+    const localState = localStorage.getItem("initState");
+    localState && (initialState = JSON.parse(localState));
     if (process.env.NODE_ENV === "development") {
         if ((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
             composeEnhancers = (window as any)

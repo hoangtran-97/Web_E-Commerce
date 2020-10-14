@@ -1,6 +1,6 @@
 import { ProductState, ProductActions, RECEIVE_PRODUCTS } from "../../typings";
 
-export default function countries(
+export default function products(
     state: ProductState = {
         list: [],
         inCart: [],
