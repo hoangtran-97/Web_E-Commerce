@@ -5,6 +5,7 @@ import { useProduct } from "../../hooks/useProduct";
 import { ProductCard } from "../../components/ProductCard";
 import { ThemeContext } from "../../context";
 import styles from "./Home.module.css";
+//Todo Store redux data in memory
 
 export const Home = () => {
     const [products] = useProduct();
