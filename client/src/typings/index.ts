@@ -3,7 +3,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const TOGGLE_DIALOG = "TOGGLE_DIALOG";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
-
+//Products
 export type Product = {
     _id: string;
     name: string;
@@ -18,9 +18,23 @@ export type Product = {
 export type ReceiveProductsAction = {
     type: typeof RECEIVE_PRODUCTS;
     payload: {
-        products: [];
+        products: Product[];
     };
 };
+export type AddProductAction = {
+    type: typeof ADD_PRODUCT;
+    payload: {
+        product: any;
+    };
+};
+
+export type RemoveProductAction = {
+    type: typeof REMOVE_PRODUCT;
+    payload: {
+        product: any;
+    };
+};
+
 export type ProductActions =
     | AddProductAction
     | RemoveProductAction
@@ -74,20 +88,6 @@ export enum DialogType {
 //     name: string;
 //     price: number;
 // };
-
-export type AddProductAction = {
-    type: typeof ADD_PRODUCT;
-    payload: {
-        product: any;
-    };
-};
-
-export type RemoveProductAction = {
-    type: typeof REMOVE_PRODUCT;
-    payload: {
-        product: any;
-    };
-};
 
 export type ToggleDialogAction = {
     type: typeof TOGGLE_DIALOG;

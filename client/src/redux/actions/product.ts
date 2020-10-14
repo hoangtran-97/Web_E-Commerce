@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 
 import { ProductActions, Product, RECEIVE_PRODUCTS } from "../../typings";
 
-export function receiveProducts(products: any): ProductActions {
+export function receiveProducts(products: Product[]): ProductActions {
     return {
         type: RECEIVE_PRODUCTS,
         payload: {

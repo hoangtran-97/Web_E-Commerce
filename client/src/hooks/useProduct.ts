@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { fetchProducts } from "../redux/actions/";
+import { AppState, Product } from "../typings";
 
 export const useProduct = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<Product[]>([]);
+    const dispatch = useDispatch();
+    const products = useSelector((state: AppState) => state.product.list);
     useEffect(() => {
-        const loadData = async () => {
-            const URL = "http://localhost:3001/api/v1/products/";
-            try {
-                const res = await fetch(URL);
-                const json = await res.json();
-                setData(json);
-            } catch (error) {}
-        };
-        loadData();
-    }, []);
+        dispatch(fetchProducts());
+    }, [dispatch]);
+    useEffect(() => {
+        setData(products);
+    }, [products]);
     return [data];
 };
