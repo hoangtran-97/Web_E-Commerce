@@ -2,13 +2,14 @@ import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import thunk from "redux-thunk";
 
-import { AppState } from "../types";
+import { AppState } from "../typings";
 import createRootReducer from "./reducers";
 import rootSaga from "./sagas";
 
 const initState: AppState = {
     product: {
         inCart: [],
+        list: [],
     },
     ui: {
         dialogOpen: {},

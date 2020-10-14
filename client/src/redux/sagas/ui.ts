@@ -1,6 +1,6 @@
 import { takeLatest } from "redux-saga/effects";
 
-import { TOGGLE_DIALOG, ToggleDialogAction } from "../../types";
+import { TOGGLE_DIALOG, ToggleDialogAction } from "../../typings";
 
 function* doSomethingWhenDialogOpen(action: ToggleDialogAction) {
     yield console.log(action);

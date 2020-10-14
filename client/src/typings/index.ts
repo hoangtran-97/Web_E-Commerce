@@ -18,7 +18,7 @@ export type Product = {
 export type ReceiveProductsAction = {
     type: typeof RECEIVE_PRODUCTS;
     payload: {
-        products: Product;
+        products: [];
     };
 };
 export type ProductActions =
@@ -101,7 +101,8 @@ export type UiActions = ToggleDialogAction;
 // Use this union in reducer
 
 export type ProductState = {
-    inCart: any[];
+    inCart: Product[];
+    list: Product[];
 };
 
 // Using dynamic keys from an enum
