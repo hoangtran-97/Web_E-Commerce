@@ -27,7 +27,6 @@ export const ProductPage = () => {
         state.product.list.find(p => p._id === id)
     );
     const { currentUser } = useSelector((state: AppState) => state.user);
-    console.log(currentUser);
     const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
