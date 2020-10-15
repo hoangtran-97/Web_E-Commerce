@@ -71,12 +71,30 @@ export const Product = () => {
                 </div>
                 <div className={styles.form}>
                     <form onSubmit={formik.handleSubmit} style={tx}>
-                        <p>Product Name: {name}</p>
-                        <p>Product Description: {description}</p>
-                        <p>Product Category: {categories}</p>
-                        <p>Price: {price} EUR</p>
+                        <p>
+                            <span className={styles.span}>Product Name:</span>{" "}
+                            {name}
+                        </p>
+                        <p>
+                            <span className={styles.span}>
+                                Product Description:
+                            </span>{" "}
+                            {description}
+                        </p>
+                        <p>
+                            <span className={styles.span}>
+                                Product Category:
+                            </span>{" "}
+                            {categories}
+                        </p>
+                        <p>
+                            <span className={styles.span}>Price:</span> {price}{" "}
+                            EUR
+                        </p>
                         <div className={styles.select}>
-                            <label htmlFor="sizes">Sizes:</label>
+                            <label htmlFor="sizes" className={styles.span}>
+                                Sizes:
+                            </label>
                             <select
                                 name="sizes"
                                 id="sizes"
@@ -100,7 +118,9 @@ export const Product = () => {
                             {formik.errors.sizes ? formik.errors.sizes : null}
                         </div>
                         <div className={styles.select}>
-                            <label htmlFor="variants">Variants:</label>
+                            <label htmlFor="variants" className={styles.span}>
+                                Variants:
+                            </label>
                             <select
                                 name="variants"
                                 id="variants"
@@ -125,7 +145,13 @@ export const Product = () => {
                                 ? formik.errors.variants
                                 : null}
                         </div>
-                        <button type="submit">Add to cart</button>
+                        <button
+                            type="submit"
+                            className={styles.button}
+                            style={{ ...bg, ...tx }}
+                        >
+                            Add to cart
+                        </button>
                     </form>
                 </div>
             </div>
