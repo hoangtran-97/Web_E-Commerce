@@ -18,5 +18,8 @@ export type AddUserAction = {
         user: User;
     };
 };
+export type UserState = {
+    currentUser: User | {};
+};
 
 export type UserActions = AddUserAction;
