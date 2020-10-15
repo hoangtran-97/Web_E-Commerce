@@ -1,4 +1,5 @@
 export const ADD_USER = "ADD_USER";
+export const ADD_TOKEN = "ADD_TOKEN";
 
 export type User = {
     userName: string;
@@ -18,8 +19,15 @@ export type AddUserAction = {
         user: User;
     };
 };
+export type AddTokenAction = {
+    type: typeof ADD_TOKEN;
+    payload: {
+        token: string;
+    };
+};
 export type UserState = {
     currentUser: User | {};
+    token: string;
 };
 
-export type UserActions = AddUserAction;
+export type UserActions = AddUserAction | AddTokenAction;

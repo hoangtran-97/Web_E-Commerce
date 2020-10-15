@@ -16,6 +16,7 @@ const initState: AppState = {
     },
     user: {
         currentUser: {},
+        token: "",
     },
 };
 

@@ -3,7 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
-import { addUser } from "../../redux/actions";
+import { addUser, addToken } from "../../redux/actions";
 
 export const GoogleLoginButton = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,8 @@ export const GoogleLoginButton = () => {
             }
         );
         dispatch(addUser(res.data.user));
-        console.log("_______RES_______", res.data.user);
+        dispatch(addToken(res.data.token));
+        console.log("_______RES_______", res.data);
     };
     return (
         <GoogleLogin
