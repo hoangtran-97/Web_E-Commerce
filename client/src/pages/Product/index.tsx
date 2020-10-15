@@ -4,10 +4,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 import { AppState, RouteParam } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
+
+const validationSchema = Yup.object().shape({
+    sizes: Yup.string().required("Required"),
+    variants: Yup.string().required("Required"),
+});
 
 export const Product = () => {
     const { theme } = useContext(ThemeContext);
@@ -24,6 +30,7 @@ export const Product = () => {
             sizes: "",
             variants: "",
         },
+        validationSchema,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
         },
@@ -88,6 +95,7 @@ export const Product = () => {
                                     </option>
                                 ))}
                             </select>
+                            {formik.errors.sizes ? formik.errors.sizes : null}
                         </div>
                         <div className={styles.select}>
                             <label htmlFor="variants">Variants:</label>
@@ -111,6 +119,9 @@ export const Product = () => {
                                     </option>
                                 ))}
                             </select>
+                            {formik.errors.variants
+                                ? formik.errors.variants
+                                : null}
                         </div>
                         <button type="submit">Add to cart</button>
                     </form>
