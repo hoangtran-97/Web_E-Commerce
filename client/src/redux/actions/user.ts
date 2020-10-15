@@ -1,12 +1,10 @@
-import { Dispatch } from "redux";
+import { ADD_USER, UserActions, User } from "../../typings";
 
-import { ADD_PRODUCT, REMOVE_PRODUCT, ProductActions } from "../../typings";
-
-export function addProduct(product: any): ProductActions {
+export function addUser(user: User): UserActions {
     return {
-        type: ADD_PRODUCT,
+        type: ADD_USER,
         payload: {
-            product,
+            user,
         },
     };
 }

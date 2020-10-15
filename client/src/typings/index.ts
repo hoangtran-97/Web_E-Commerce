@@ -1,6 +1,7 @@
 import { ProductState } from "./product";
 import { UiState } from "./ui";
 
+export * from "./user";
 export * from "./product";
 export * from "./ui";
 
