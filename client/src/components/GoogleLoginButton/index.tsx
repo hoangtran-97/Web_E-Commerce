@@ -16,7 +16,6 @@ export const GoogleLoginButton = () => {
         );
         dispatch(addUser(res.data.user));
         dispatch(addToken(res.data.token));
-        console.log("_______RES_______", res.data);
     };
     return (
         <GoogleLogin

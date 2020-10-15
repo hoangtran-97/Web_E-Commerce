@@ -20,6 +20,8 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
     const regex = RegExp("/product");
     const result = regex.test(pathname);
     const cart = useSelector((state: AppState) => state.product.inCart);
+    const { token } = useSelector((state: AppState) => state.user);
+
     return (
         <div className={styles.container} style={fg}>
             <Link className={styles.left} to="/">
@@ -35,10 +37,20 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
             </Link>
             {!result && <Search query={query} setQuery={setQuery} />}
             <div className={styles.right}>
-                <p style={tx}>Welcome guest</p>
-                <Link className={styles.login} style={tx} to="/login">
-                    Login
-                </Link>
+                {token ? (
+                    <>
+                        <Link className={styles.login} style={tx} to="/login">
+                            Logout
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link className={styles.login} style={tx} to="/login">
+                            Login
+                        </Link>
+                    </>
+                )}
+
                 <button className={styles.button__cart}>
                     <AiOutlineShoppingCart
                         className={styles.icon__cart}
