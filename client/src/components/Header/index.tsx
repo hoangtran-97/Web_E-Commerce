@@ -5,12 +5,12 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { AppState } from "../../typings";
+import { AppState, HeaderProps } from "../../typings";
 import { Search } from "../Search";
 import { ThemeContext } from "../../context";
 import styles from "./Header.module.css";
 
-export const Header = () => {
+export const Header = ({ query, setQuery }: HeaderProps) => {
     const { theme } = useContext(ThemeContext);
     const location = useLocation();
     const { pathname } = location;
@@ -33,7 +33,7 @@ export const Header = () => {
                     E-Commerce
                 </p>
             </Link>
-            {!result && <Search />}
+            {!result && <Search query={query} setQuery={setQuery} />}
             <div className={styles.right}>
                 <p style={tx}>Welcome guest</p>
                 <Link className={styles.login} style={tx} to="/login">
