@@ -12,7 +12,7 @@ export const Home = ({ query }: HomeProps) => {
     const bg = { backgroundColor: theme.background };
     return (
         <div className={styles.container} style={bg}>
-            {products === null ? (
+            {products.length === 0 ? (
                 <p>No Product</p>
             ) : (
                 <>
