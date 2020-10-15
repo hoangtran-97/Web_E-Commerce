@@ -1,6 +1,20 @@
 import { Dispatch } from "redux";
 
-import { ProductActions, Product, RECEIVE_PRODUCTS } from "../../typings";
+import {
+    ProductActions,
+    Product,
+    RECEIVE_PRODUCTS,
+    ADD_PRODUCT,
+} from "../../typings";
+
+export function addProduct(product: any): ProductActions {
+    return {
+        type: ADD_PRODUCT,
+        payload: {
+            product,
+        },
+    };
+}
 
 export function receiveProducts(products: Product[]): ProductActions {
     return {

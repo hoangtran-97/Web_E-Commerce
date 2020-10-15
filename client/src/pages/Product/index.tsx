@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import { addProduct } from "../../redux/actions";
 import { AppState, RouteParam } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
@@ -25,6 +26,7 @@ export const Product = () => {
     const product = useSelector((state: AppState) =>
         state.product.list.find(p => p._id === id)
     );
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             sizes: "",
@@ -33,6 +35,7 @@ export const Product = () => {
         validationSchema,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
+            dispatch(addProduct({ ...product, ...values }));
         },
     });
     if (!product) {

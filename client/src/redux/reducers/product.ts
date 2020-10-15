@@ -1,4 +1,9 @@
-import { ProductState, ProductActions, RECEIVE_PRODUCTS } from "../../typings";
+import {
+    ProductState,
+    ProductActions,
+    RECEIVE_PRODUCTS,
+    ADD_PRODUCT,
+} from "../../typings";
 
 export default function products(
     state: ProductState = {
@@ -15,6 +20,14 @@ export default function products(
                 list: [...products],
                 // list: [...state.list, countries],
             };
+        case ADD_PRODUCT: {
+            const { product } = action.payload;
+            if (state.inCart.find(p => p.name === product.name)) {
+                return state;
+            }
+            // Always return new state (e.g, new object) if changed
+            return { ...state, inCart: [...state.inCart, product] };
+        }
         default:
             return state;
     }

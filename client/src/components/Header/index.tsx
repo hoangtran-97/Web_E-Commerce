@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
+import { AppState } from "../../typings";
 import { Search } from "../Search";
 import { ThemeContext } from "../../context";
 import styles from "./Header.module.css";
@@ -16,7 +18,7 @@ export const Header = () => {
     const tx = { color: theme.text };
     const regex = RegExp("/product");
     const result = regex.test(pathname);
-
+    const cart = useSelector((state: AppState) => state.product.inCart);
     return (
         <div className={styles.container} style={fg}>
             <div className={styles.left}>
@@ -45,7 +47,7 @@ export const Header = () => {
                         className={styles.cart__counter}
                         style={{ ...tx, ...bg }}
                     >
-                        5
+                        {cart.length}
                     </div>
                 </button>
             </div>
