@@ -38,13 +38,15 @@ export const Product = () => {
     if (!product) {
         return (
             <div className={styles.container} style={{ ...bg, ...tx }}>
-                <h2> Product not found</h2>
-                <Link type="button" to="/">
-                    <AiOutlineArrowLeft
-                        className={styles.icon__back}
-                        style={txfg}
-                    ></AiOutlineArrowLeft>
-                </Link>
+                <div className={styles.error__container}>
+                    <h2 className={styles.error__text}> Product not found</h2>
+                    <Link type="button" to="/">
+                        <AiOutlineArrowLeft
+                            className={styles.error__icon}
+                            style={txfg}
+                        ></AiOutlineArrowLeft>
+                    </Link>
+                </div>
             </div>
         );
     }
@@ -127,6 +129,12 @@ export const Product = () => {
                     </form>
                 </div>
             </div>
+            <Link type="button" to="/">
+                <AiOutlineArrowLeft
+                    className={styles.error__icon}
+                    style={txfg}
+                ></AiOutlineArrowLeft>
+            </Link>
         </div>
     );
 };

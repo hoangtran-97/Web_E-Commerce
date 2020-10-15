@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
 import makeStore from "./redux/store";
+import ScrollToTop from "./hooks/useToTop";
 import "./index.css";
 
 const store = makeStore();
@@ -12,6 +13,7 @@ const store = makeStore();
 const WithProvider = () => (
     <Provider store={store}>
         <Router>
+            <ScrollToTop></ScrollToTop>
             <App />
         </Router>
     </Provider>
