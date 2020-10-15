@@ -12,8 +12,8 @@ import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
 
 const validationSchema = Yup.object().shape({
-    sizes: Yup.string().required("Required"),
-    variants: Yup.string().required("Required"),
+    sizes: Yup.string().required("  Required"),
+    variants: Yup.string().required("  Required"),
 });
 
 export const ProductPage = () => {
@@ -34,7 +34,7 @@ export const ProductPage = () => {
         },
         validationSchema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
             if (product) {
                 const cartItem: Product = { ...product };
                 cartItem.sizes = [];
