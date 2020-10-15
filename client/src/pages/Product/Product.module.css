@@ -29,6 +29,21 @@
     height: 100%;
     text-align: center;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 50px;
+    width: 400px;
+    height: 500px;
+}
+.select label {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: 100px;
+}
 @media (min-width: 900px) {
     .container__inner {
         margin-top: 40px;

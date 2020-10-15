@@ -21,7 +21,8 @@ export const Product = () => {
     );
     const formik = useFormik({
         initialValues: {
-            email: "",
+            sizes: "",
+            variants: "",
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
@@ -59,20 +60,61 @@ export const Product = () => {
                         src={img}
                     ></img>
                 </div>
-                <form onSubmit={formik.handleSubmit}>
-                    <p>Title: {name}</p>
-                    <p>{price}</p>
-                    <p>{description}</p>
-                    <label htmlFor="email">Email Address</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                    />
-                    <button type="submit">Submit</button>
-                </form>
+                <div className={styles.form}>
+                    <form onSubmit={formik.handleSubmit} style={tx}>
+                        <p>Product Name: {name}</p>
+                        <p>Product Description: {description}</p>
+                        <p>Product Category: {categories}</p>
+                        <p>Price: {price} EUR</p>
+                        <div className={styles.select}>
+                            <label htmlFor="sizes">Sizes:</label>
+                            <select
+                                name="sizes"
+                                id="sizes"
+                                value={formik.values.sizes}
+                                onChange={formik.handleChange}
+                            >
+                                <option
+                                    value=""
+                                    defaultValue=""
+                                    disabled
+                                    hidden
+                                >
+                                    Choose here
+                                </option>
+                                {sizes.map((size, index) => (
+                                    <option value={size} key={index}>
+                                        {size}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className={styles.select}>
+                            <label htmlFor="variants">Variants:</label>
+                            <select
+                                name="variants"
+                                id="variants"
+                                value={formik.values.variants}
+                                onChange={formik.handleChange}
+                            >
+                                <option
+                                    value=""
+                                    defaultValue=""
+                                    disabled
+                                    hidden
+                                >
+                                    Choose here
+                                </option>
+                                {variants.map((variant, index) => (
+                                    <option value={variant} key={index}>
+                                        {variant}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <button type="submit">Add to cart</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
