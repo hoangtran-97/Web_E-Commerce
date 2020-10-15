@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { AppState } from "../../typings";
@@ -21,7 +22,7 @@ export const Header = () => {
     const cart = useSelector((state: AppState) => state.product.inCart);
     return (
         <div className={styles.container} style={fg}>
-            <div className={styles.left}>
+            <Link className={styles.left} to="/">
                 <Player
                     autoplay
                     loop
@@ -31,13 +32,13 @@ export const Header = () => {
                 <p style={tx} className={styles.left__text}>
                     E-Commerce
                 </p>
-            </div>
+            </Link>
             {!result && <Search />}
             <div className={styles.right}>
                 <p style={tx}>Welcome guest</p>
-                <p className={styles.login} style={tx}>
+                <Link className={styles.login} style={tx} to="/login">
                     Login
-                </p>
+                </Link>
                 <button className={styles.button__cart}>
                     <AiOutlineShoppingCart
                         className={styles.icon__cart}

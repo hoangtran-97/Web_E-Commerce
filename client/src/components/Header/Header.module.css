@@ -17,6 +17,7 @@
 }
 .left {
     margin-bottom: 10px;
+    text-decoration: none;
 }
 .right {
     margin-top: 10px;
@@ -27,6 +28,7 @@
 .login {
     margin-right: 10px;
     margin-left: 10px;
+    text-decoration: none;
 }
 .left__text {
     margin-left: 10px;
