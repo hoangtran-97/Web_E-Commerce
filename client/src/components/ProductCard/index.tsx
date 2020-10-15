@@ -15,7 +15,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     const tx = { color: theme.text };
     const { name, price, img, _id } = product;
     const isInCart = cart.find(p => p.name === name);
-    console.log("isINCart", isInCart);
 
     return (
         <Link className={styles.container} style={fg} to={`/product/${_id}`}>
