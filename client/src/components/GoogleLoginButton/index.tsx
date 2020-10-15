@@ -9,7 +9,7 @@ const responseGoogle = async (response: any) => {
             id_token: response.tokenId,
         }
     );
-    console.log("_______RES_______", res);
+    console.log("_______RES_______", res.data);
 };
 
 export const GoogleLoginButton = () => (

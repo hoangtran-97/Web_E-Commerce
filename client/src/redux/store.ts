@@ -20,6 +20,7 @@ export default function makeStore(initialState = initState) {
     const sagaMiddleware = createSagaMiddleware();
     const middlewares = [sagaMiddleware, thunk];
     let composeEnhancers = compose;
+
     const localState = localStorage.getItem("initState");
     localState && (initialState = JSON.parse(localState));
     if (process.env.NODE_ENV === "development") {

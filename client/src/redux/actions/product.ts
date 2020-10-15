@@ -7,7 +7,7 @@ import {
     ADD_PRODUCT,
 } from "../../typings";
 
-export function addProduct(product: any): ProductActions {
+export function addProduct(product: Product): ProductActions {
     return {
         type: ADD_PRODUCT,
         payload: {

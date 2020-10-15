@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { addProduct } from "../../redux/actions";
-import { AppState, RouteParam } from "../../typings";
+import { AppState, RouteParam, Product } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
 
@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
     variants: Yup.string().required("Required"),
 });
 
-export const Product = () => {
+export const ProductPage = () => {
     const { theme } = useContext(ThemeContext);
     const fg = { backgroundColor: theme.foreground };
     const bg = { backgroundColor: theme.background };
@@ -35,7 +35,14 @@ export const Product = () => {
         validationSchema,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
-            dispatch(addProduct({ ...product, ...values }));
+            if (product) {
+                const cartItem: Product = { ...product };
+                cartItem.sizes = [];
+                cartItem.sizes.push(parseInt(values.sizes));
+                cartItem.variants = [];
+                cartItem.variants.push(values.variants);
+                dispatch(addProduct(cartItem));
+            }
         },
     });
     if (!product) {
