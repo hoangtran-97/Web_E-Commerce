@@ -14,6 +14,9 @@ const initState: AppState = {
     ui: {
         dialogOpen: {},
     },
+    user: {
+        currentUser: {},
+    },
 };
 
 export default function makeStore(initialState = initState) {

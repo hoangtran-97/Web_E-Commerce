@@ -9,11 +9,7 @@ export default function products(
     switch (action.type) {
         case ADD_USER: {
             const { user } = action.payload;
-            if (state.currentUser) {
-                return state;
-            }
-            // Always return new state (e.g, new object) if changed
-            return { ...state, currentUser: user };
+            return { ...state, currentUser: { ...state.currentUser, user } };
         }
         default:
             return state;

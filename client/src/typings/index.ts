@@ -1,5 +1,6 @@
 import { ProductState } from "./product";
 import { UiState } from "./ui";
+import { UserState } from "./user";
 
 export * from "./user";
 export * from "./product";
@@ -25,4 +26,5 @@ export type RouteParam = {
 export type AppState = {
     product: ProductState;
     ui: UiState;
+    user: UserState;
 };
