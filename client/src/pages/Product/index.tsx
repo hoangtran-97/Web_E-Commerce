@@ -26,6 +26,8 @@ export const ProductPage = () => {
     const product = useSelector((state: AppState) =>
         state.product.list.find(p => p._id === id)
     );
+    const { currentUser } = useSelector((state: AppState) => state.user);
+    console.log(currentUser);
     const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
@@ -41,7 +43,11 @@ export const ProductPage = () => {
                 cartItem.sizes.push(parseInt(values.sizes));
                 cartItem.variants = [];
                 cartItem.variants.push(values.variants);
-                dispatch(addProduct(cartItem));
+                if (currentUser.hasOwnProperty("user")) {
+                    dispatch(addProduct(cartItem));
+                } else {
+                    alert("Please Login to add products to cart");
+                }
             }
         },
     });
