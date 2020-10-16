@@ -15,10 +15,10 @@ export const useProduct = (query: string) => {
         setData(products);
     }, [products]);
     useEffect(() => {
-        const sorted = [...products].filter((product: any) =>
+        const sorted = [...products].filter((product: Product) =>
             product.name.toLowerCase().includes(query.toLowerCase())
         );
         setData(sorted);
-    }, [query]);
+    }, [query, products]);
     return [data];
 };
