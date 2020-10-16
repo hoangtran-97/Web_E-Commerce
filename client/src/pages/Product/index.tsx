@@ -10,6 +10,7 @@ import { addProduct } from "../../redux/actions";
 import { AppState, RouteParam, Product } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
+import userEvent from "@testing-library/user-event";
 
 const validationSchema = Yup.object().shape({
     sizes: Yup.string().required("  Required"),
@@ -42,11 +43,15 @@ export const ProductPage = () => {
                 cartItem.sizes.push(parseInt(values.sizes));
                 cartItem.variants = [];
                 cartItem.variants.push(values.variants);
-                if (currentUser.hasOwnProperty("user")) {
-                    dispatch(addProduct(cartItem));
-                } else {
-                    alert("Please Login to add products to cart");
-                }
+                const { userName } = currentUser;
+                console.log(userName);
+                // if ("userName" in currentUser.user) {
+                //     const  {userName} = currentUser;
+                //     console.log(userName);
+                //     dispatch(addProduct(cartItem));
+                // } else {
+                //     alert("Please Login to add products to cart");
+                // }
             }
         },
     });

@@ -1,8 +1,15 @@
-import { UserState, UserActions, ADD_USER, ADD_TOKEN } from "../../typings";
+import { use } from "chai";
+import {
+    UserState,
+    UserActions,
+    ADD_USER,
+    ADD_TOKEN,
+    User,
+} from "../../typings";
 
 export default function products(
     state: UserState = {
-        currentUser: {},
+        currentUser: {} as User,
         token: "",
     },
     action: UserActions
@@ -10,7 +17,9 @@ export default function products(
     switch (action.type) {
         case ADD_USER: {
             const { user } = action.payload;
-            return { ...state, currentUser: { ...state.currentUser, user } };
+            console.log("userPAYLOAD", user);
+
+            return { ...state, currentUser: user };
         }
         case ADD_TOKEN: {
             const { token } = action.payload;

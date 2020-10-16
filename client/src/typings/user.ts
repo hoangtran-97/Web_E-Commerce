@@ -7,7 +7,7 @@ export type User = {
     lastName: string;
     email: string;
     isAdmin: boolean;
-    isBanned?: boolean;
+    isBanned: boolean;
     password: string;
     googleId: string;
     cart: string[];
@@ -26,7 +26,7 @@ export type AddTokenAction = {
     };
 };
 export type UserState = {
-    currentUser: User | {};
+    currentUser: User;
     token: string;
 };
 
