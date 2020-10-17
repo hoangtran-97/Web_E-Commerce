@@ -16,8 +16,6 @@ export default function products(
     switch (action.type) {
         case ADD_USER: {
             const { user } = action.payload;
-            console.log("userPAYLOAD", user);
-
             return { ...state, currentUser: user };
         }
         case ADD_TOKEN: {

@@ -43,7 +43,6 @@ export const ProductPage = () => {
                 cartItem.variants = [];
                 cartItem.variants.push(values.variants);
                 const { _id } = currentUser;
-                console.log(product);
                 if (_id) {
                     dispatch(addProductDB(currentUser, cartItem, _id, token));
                 } else {

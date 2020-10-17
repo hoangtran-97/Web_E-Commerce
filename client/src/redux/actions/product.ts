@@ -8,23 +8,23 @@ import {
     ADD_PRODUCT,
 } from "../../typings";
 
-export function addProduct(product: Product): ProductActions {
+export const addProduct = (product: Product): ProductActions => {
     return {
         type: ADD_PRODUCT,
         payload: {
             product,
         },
     };
-}
+};
 
-export function receiveProducts(products: Product[]): ProductActions {
+export const receiveProducts = (products: Product[]): ProductActions => {
     return {
         type: RECEIVE_PRODUCTS,
         payload: {
             products,
         },
     };
-}
+};
 
 //TODO: Fix API link after upload
 export const fetchProducts = () => {
@@ -43,7 +43,10 @@ export const addProductDB = (
     token: string
 ) => {
     return (dispatch: Dispatch) => {
-        user.cart.push(product._id);
+        if (!user.cart.find(p => p === product._id)) {
+            user.cart.push(product._id);
+        }
+
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT", // or 'PUT'
             headers: {

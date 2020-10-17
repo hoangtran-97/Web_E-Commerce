@@ -1,12 +1,14 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import { addUser, addToken } from "../../redux/actions";
+import { AppState, RouteParam, Product } from "../../typings";
+import { addToken, addUser, updateUser } from "../../redux/actions";
 
 export const GoogleLoginButton = () => {
     const dispatch = useDispatch();
+    const cart = useSelector((state: AppState) => state.product.inCart);
     const responseGoogle = async (response: any) => {
         const res = await axios.post(
             "http://localhost:3001/api/v1/auth/googleTokenId",
@@ -14,7 +16,7 @@ export const GoogleLoginButton = () => {
                 id_token: response.tokenId,
             }
         );
-        dispatch(addUser(res.data.user));
+        dispatch(updateUser(res.data.user, res.data.token, cart));
         dispatch(addToken(res.data.token));
     };
     return (
