@@ -41,7 +41,7 @@ export const updateUser = (user: User, token: string, cart: Product[]) => {
             .then(response => response.json())
             .then(data => {
                 console.log("Success:", data);
-                dispatch(addUser(user));
+                dispatch(addUser(data));
             })
             .catch(error => {
                 console.error("Error:", error);

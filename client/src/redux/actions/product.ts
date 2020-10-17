@@ -43,9 +43,12 @@ export const addProductDB = (
     token: string
 ) => {
     return (dispatch: Dispatch) => {
-        if (!user.cart.find(p => p === product._id)) {
-            user.cart.push(product._id);
-        }
+        const result = Array.from(new Set([product._id].concat(user.cart)));
+        const updateUser = { ...user, cart: [...result] };
+        console.log(user.cart);
+        console.log(product._id);
+        console.log(result);
+        console.log(updateUser);
 
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT", // or 'PUT'
@@ -53,11 +56,10 @@ export const addProductDB = (
                 "Content-Type": "application/json",
                 Authorization: "bearer " + token,
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(updateUser),
         })
             .then(response => response.json())
             .then(data => {
-                console.log("Success:", data);
                 dispatch(addProduct(product));
             })
             .catch(error => {
