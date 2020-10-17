@@ -20,7 +20,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
     const regex = RegExp("/product");
     const result = regex.test(pathname);
     const cart = useSelector((state: AppState) => state.product.inCart);
-    const { token, currentUser } = useSelector((state: AppState) => state.user);
+    const { token } = useSelector((state: AppState) => state.user);
 
     return (
         <div className={styles.container} style={fg}>

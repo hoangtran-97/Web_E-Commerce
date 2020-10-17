@@ -10,7 +10,6 @@ import styles from "./ProductCard.module.css";
 export const ProductCard = ({ product }: ProductCardProps) => {
     const { theme } = useContext(ThemeContext);
     const cart = useSelector((state: AppState) => state.product.inCart);
-    const bg = { backgroundColor: theme.background };
     const fg = { backgroundColor: theme.foreground };
     const tx = { color: theme.text };
     const { name, price, img, _id } = product;

@@ -1,7 +1,6 @@
 import { Dispatch } from "redux";
 
 import { ADD_USER, UserActions, User, ADD_TOKEN, Product } from "../../typings";
-import { addProduct } from "../actions";
 
 export const addUser = (user: User): UserActions => {
     return {

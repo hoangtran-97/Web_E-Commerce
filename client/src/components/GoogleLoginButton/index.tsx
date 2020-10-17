@@ -3,8 +3,8 @@ import { GoogleLogin } from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import { AppState, RouteParam, Product } from "../../typings";
-import { addToken, addUser, updateUser } from "../../redux/actions";
+import { AppState } from "../../typings";
+import { addToken, updateUser } from "../../redux/actions";
 
 export const GoogleLoginButton = () => {
     const dispatch = useDispatch();
