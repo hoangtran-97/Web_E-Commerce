@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 
 import {
+    User,
     ProductActions,
     Product,
     RECEIVE_PRODUCTS,
@@ -26,7 +27,7 @@ export function receiveProducts(products: Product[]): ProductActions {
 }
 
 //TODO: Fix API link after upload
-export function fetchProducts() {
+export const fetchProducts = () => {
     return (dispatch: Dispatch) => {
         return fetch("http://localhost:3001/api/v1/products").then(res =>
             res.json().then(products => {
@@ -34,4 +35,30 @@ export function fetchProducts() {
             })
         );
     };
-}
+};
+export const addProductDB = (
+    user: User,
+    product: Product,
+    _id: string,
+    token: string
+) => {
+    return (dispatch: Dispatch) => {
+        user.cart.push(product._id);
+        return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
+            method: "PUT", // or 'PUT'
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "bearer " + token,
+            },
+            body: JSON.stringify(user),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Success:", data);
+                dispatch(addProduct(product));
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    };
+};

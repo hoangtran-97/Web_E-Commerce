@@ -2,6 +2,7 @@ export const ADD_USER = "ADD_USER";
 export const ADD_TOKEN = "ADD_TOKEN";
 
 export type User = {
+    _id: string;
     userName: string;
     firstName: string;
     lastName: string;

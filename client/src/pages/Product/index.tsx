@@ -6,11 +6,10 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { addProduct } from "../../redux/actions";
+import { addProduct, addProductDB } from "../../redux/actions";
 import { AppState, RouteParam, Product } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
-import userEvent from "@testing-library/user-event";
 
 const validationSchema = Yup.object().shape({
     sizes: Yup.string().required("  Required"),
@@ -27,7 +26,7 @@ export const ProductPage = () => {
     const product = useSelector((state: AppState) =>
         state.product.list.find(p => p._id === id)
     );
-    const { currentUser } = useSelector((state: AppState) => state.user);
+    const { currentUser, token } = useSelector((state: AppState) => state.user);
     const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
@@ -43,15 +42,13 @@ export const ProductPage = () => {
                 cartItem.sizes.push(parseInt(values.sizes));
                 cartItem.variants = [];
                 cartItem.variants.push(values.variants);
-                const { userName } = currentUser;
-                console.log(userName);
-                // if ("userName" in currentUser.user) {
-                //     const  {userName} = currentUser;
-                //     console.log(userName);
-                //     dispatch(addProduct(cartItem));
-                // } else {
-                //     alert("Please Login to add products to cart");
-                // }
+                const { _id } = currentUser;
+                console.log(product);
+                if (_id) {
+                    dispatch(addProductDB(currentUser, cartItem, _id, token));
+                } else {
+                    dispatch(addProduct(cartItem));
+                }
             }
         },
     });
