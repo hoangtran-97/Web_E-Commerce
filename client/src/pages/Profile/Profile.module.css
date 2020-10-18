@@ -6,3 +6,17 @@
     padding-top: 50px;
     align-items: center;
 }
+.tab {
+    width: 100%;
+}
+.tab__list {
+    width: 100%;
+}
+.tab__list__selected {
+    background-color: #424242;
+}
+.tab__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

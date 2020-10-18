@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    color: red;
+}

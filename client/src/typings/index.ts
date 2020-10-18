@@ -8,6 +8,10 @@ export * from "./ui";
 
 // Action types
 
+export type AdminProductItemProps = {
+    product: Product;
+};
+
 export type HomeProps = {
     query: string;
 };
