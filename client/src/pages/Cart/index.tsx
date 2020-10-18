@@ -13,7 +13,7 @@ export const Cart = () => {
 
     return (
         <div className={styles.container} style={bg}>
-            <p className={styles.title}>Your shopping cart</p>
+            <h2 className={styles.title}>Your shopping cart</h2>
             <div className={styles.container__cart}>
                 {cart.length === 0 ? (
                     <p>is empty!</p>
