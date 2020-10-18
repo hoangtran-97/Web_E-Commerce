@@ -45,6 +45,7 @@ export const updateUser = (
             .then(response => response.json())
             .then(data => {
                 console.log("Success:", data);
+                dispatch(addUser(data));
                 data.cart.forEach((item: string) => {
                     const result = list.find(p => p._id === item);
                     result && dispatch(addProduct(result));
