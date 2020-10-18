@@ -51,7 +51,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                     </>
                 )}
 
-                <button className={styles.button__cart}>
+                <Link className={styles.button__cart} to="/cart ">
                     <AiOutlineShoppingCart
                         className={styles.icon__cart}
                         style={tx}
@@ -62,7 +62,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                     >
                         {cart.length}
                     </div>
-                </button>
+                </Link>
             </div>
         </div>
     );
