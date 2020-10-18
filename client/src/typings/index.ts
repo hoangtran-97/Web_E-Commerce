@@ -1,4 +1,4 @@
-import { ProductState } from "./product";
+import { ProductState, Product } from "./product";
 import { UiState } from "./ui";
 import { UserState } from "./user";
 
@@ -14,6 +14,9 @@ export type HomeProps = {
 export type HeaderProps = {
     query: string;
     setQuery: Function;
+};
+export type CartItemProps = {
+    item: Product;
 };
 export type ContextChildrenProps = {
     children: React.ReactNode;

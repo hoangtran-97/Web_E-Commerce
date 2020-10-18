@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Cart.module.css";
+import { CartItem } from "../../components/CartItem";
 
 export const Cart = () => {
     const { theme } = useContext(ThemeContext);
@@ -12,7 +13,15 @@ export const Cart = () => {
 
     return (
         <div className={styles.container} style={bg}>
-            Cart
+            {cart.length === 0 ? (
+                <p>No Product</p>
+            ) : (
+                <>
+                    {cart.map(item => (
+                        <CartItem key={item._id} item={item}></CartItem>
+                    ))}
+                </>
+            )}
         </div>
     );
 };

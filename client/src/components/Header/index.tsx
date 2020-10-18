@@ -51,7 +51,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                     </>
                 )}
 
-                <Link className={styles.button__cart} to="/cart ">
+                <Link className={styles.button__cart} to="/cart">
                     <AiOutlineShoppingCart
                         className={styles.icon__cart}
                         style={tx}
