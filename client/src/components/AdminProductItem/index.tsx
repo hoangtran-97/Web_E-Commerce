@@ -8,7 +8,6 @@ import styles from "./AdminProductItem.module.css";
 export const AdminProductItem = ({ product }: AdminProductItemProps) => {
     const { _id, name } = product;
     const { theme } = useContext(ThemeContext);
-    const bg = { backgroundColor: theme.background };
     const tx = { color: theme.text };
     const fg = { backgroundColor: theme.foreground };
     return (

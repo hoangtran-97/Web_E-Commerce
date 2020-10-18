@@ -7,6 +7,7 @@ import { AppState } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Profile.module.css";
 import { AdminProductItem } from "../../components/AdminProductItem";
+import { AdminAddProduct } from "../../components/AdminAddProduct";
 
 export const Profile = () => {
     const { theme } = useContext(ThemeContext);
@@ -56,7 +57,7 @@ export const Profile = () => {
                 </TabPanel>
                 <TabPanel className={styles.tab__panel}>
                     <h2>Add a product to the store</h2>
-                    <p>Formik Form</p>
+                    <AdminAddProduct token={token} />
                 </TabPanel>
             </Tabs>
         </div>

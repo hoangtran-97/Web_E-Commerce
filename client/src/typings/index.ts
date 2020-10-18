@@ -8,6 +8,8 @@ export * from "./ui";
 
 // Action types
 
+export type AdminAddProductProps = { token: string };
+
 export type AdminProductItemProps = {
     product: Product;
 };
