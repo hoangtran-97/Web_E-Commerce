@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 
 import { AppState } from "../../typings";
 import { ThemeContext } from "../../context";
-import styles from "./Cart.module.css";
 import { CartItem } from "../../components/CartItem";
+import styles from "./Cart.module.css";
 
 export const Cart = () => {
     const { theme } = useContext(ThemeContext);
