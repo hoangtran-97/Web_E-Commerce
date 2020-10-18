@@ -20,7 +20,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
     // const regex = RegExp("/product");
     // const result = regex.test(pathname);
     const cart = useSelector((state: AppState) => state.product.inCart);
-    const { token } = useSelector((state: AppState) => state.user);
+    const { token, currentUser } = useSelector((state: AppState) => state.user);
 
     return (
         <div className={styles.container} style={fg}>
@@ -39,8 +39,8 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
             <div className={styles.right}>
                 {token ? (
                     <>
-                        <Link className={styles.login} style={tx} to="/login">
-                            Logout
+                        <Link className={styles.login} style={tx} to="/profile">
+                            {currentUser.userName}
                         </Link>
                     </>
                 ) : (
