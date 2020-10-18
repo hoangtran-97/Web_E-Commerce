@@ -4,7 +4,6 @@ import { GiCancel } from "react-icons/gi";
 import { AdminProductItemProps } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./AdminProductItem.module.css";
-import { icons } from "react-icons/lib";
 
 export const AdminProductItem = ({ product }: AdminProductItemProps) => {
     const { _id, name } = product;
