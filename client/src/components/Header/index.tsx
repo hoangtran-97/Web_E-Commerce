@@ -17,8 +17,8 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
     const fg = { backgroundColor: theme.foreground };
     const bg = { backgroundColor: theme.background };
     const tx = { color: theme.text };
-    const regex = RegExp("/product");
-    const result = regex.test(pathname);
+    // const regex = RegExp("/product");
+    // const result = regex.test(pathname);
     const cart = useSelector((state: AppState) => state.product.inCart);
     const { token } = useSelector((state: AppState) => state.user);
 
@@ -35,7 +35,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                     E-Commerce
                 </p>
             </Link>
-            {!result && <Search query={query} setQuery={setQuery} />}
+            {pathname === "/" && <Search query={query} setQuery={setQuery} />}
             <div className={styles.right}>
                 {token ? (
                     <>
