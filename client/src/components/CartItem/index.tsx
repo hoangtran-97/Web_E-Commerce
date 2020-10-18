@@ -9,6 +9,7 @@ export const CartItem = ({ item }: CartItemProps) => {
     return (
         <div className={styles.container}>
             <ProductCard product={item} key={item._id} noFlag></ProductCard>
+            <button>Remove</button>
         </div>
     );
 };

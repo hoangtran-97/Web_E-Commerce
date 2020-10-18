@@ -13,15 +13,18 @@ export const Cart = () => {
 
     return (
         <div className={styles.container} style={bg}>
-            {cart.length === 0 ? (
-                <p>No Product In Cart.</p>
-            ) : (
-                <>
-                    {cart.map(item => (
-                        <CartItem key={item._id} item={item}></CartItem>
-                    ))}
-                </>
-            )}
+            <p className={styles.title}>Your shopping cart</p>
+            <div className={styles.container__cart}>
+                {cart.length === 0 ? (
+                    <p>is empty!</p>
+                ) : (
+                    <>
+                        {cart.map(item => (
+                            <CartItem key={item._id} item={item}></CartItem>
+                        ))}
+                    </>
+                )}
+            </div>
         </div>
     );
 };
