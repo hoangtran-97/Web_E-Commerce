@@ -40,6 +40,7 @@ export type ProductActions =
 
 export type ProductCardProps = {
     product: Product;
+    noFlag?: boolean;
 };
 export type ProductState = {
     inCart: Product[];

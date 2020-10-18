@@ -14,7 +14,7 @@ export const Cart = () => {
     return (
         <div className={styles.container} style={bg}>
             {cart.length === 0 ? (
-                <p>No Product</p>
+                <p>No Product In Cart.</p>
             ) : (
                 <>
                     {cart.map(item => (

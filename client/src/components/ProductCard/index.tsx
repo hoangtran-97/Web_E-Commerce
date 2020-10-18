@@ -7,7 +7,7 @@ import { ProductCardProps } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./ProductCard.module.css";
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
     const { theme } = useContext(ThemeContext);
     const cart = useSelector((state: AppState) => state.product.inCart);
     const fg = { backgroundColor: theme.foreground };
@@ -24,7 +24,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 {name}
             </p>
             <p className={styles.price} style={tx}>{`${price} EUR`}</p>
-            {isInCart && <div className={styles.indicator} style={fg}></div>}
+            {isInCart && !noFlag && (
+                <div className={styles.indicator} style={fg}></div>
+            )}
         </Link>
     );
 };
