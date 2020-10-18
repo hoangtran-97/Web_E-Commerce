@@ -55,11 +55,6 @@ export const addProductDB = (
     return (dispatch: Dispatch) => {
         const result = Array.from(new Set([product._id].concat(user.cart)));
         const updateUser = { ...user, cart: [...result] };
-        console.log(user.cart);
-        console.log(product._id);
-        console.log(result);
-        console.log(updateUser);
-
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT", // or 'PUT'
             headers: {

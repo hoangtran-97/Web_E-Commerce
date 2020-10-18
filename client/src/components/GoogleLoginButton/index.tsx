@@ -9,6 +9,7 @@ import { addToken, updateUser } from "../../redux/actions";
 export const GoogleLoginButton = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state: AppState) => state.product.inCart);
+    const list = useSelector((state: AppState) => state.product.list);
     const responseGoogle = async (response: any) => {
         const res = await axios.post(
             "http://localhost:3001/api/v1/auth/googleTokenId",
@@ -16,7 +17,7 @@ export const GoogleLoginButton = () => {
                 id_token: response.tokenId,
             }
         );
-        dispatch(updateUser(res.data.user, res.data.token, cart));
+        dispatch(updateUser(res.data.user, res.data.token, cart, list));
         dispatch(addToken(res.data.token));
     };
     return (
