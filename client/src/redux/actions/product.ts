@@ -5,6 +5,7 @@ import {
     ProductActions,
     Product,
     RECEIVE_PRODUCTS,
+    REMOVE_PRODUCT,
     ADD_PRODUCT,
 } from "../../typings";
 
@@ -16,6 +17,15 @@ export const addProduct = (product: Product): ProductActions => {
         },
     };
 };
+
+export function removeProduct(product: Product): ProductActions {
+    return {
+        type: REMOVE_PRODUCT,
+        payload: {
+            product,
+        },
+    };
+}
 
 export const receiveProducts = (products: Product[]): ProductActions => {
     return {
