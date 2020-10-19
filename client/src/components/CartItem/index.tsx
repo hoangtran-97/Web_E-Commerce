@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { removeProduct, removeProductDB } from "../../redux/actions";
-import { CartItemProps, AppState, Product, User } from "../../typings";
+import { CartItemProps, AppState } from "../../typings";
 import { ProductCard } from "../ProductCard";
 import { ThemeContext } from "../../context";
 import styles from "./CartItem.module.css";
