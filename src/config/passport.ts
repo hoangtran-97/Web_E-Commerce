@@ -3,8 +3,6 @@ import passport from "passport";
 
 import User from "../models/User";
 
-import logger from "../util/logger";
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const GoogleTokenStrategy = require("passport-google-id-token");
 const GOOGLE_CLIENT_ID =
