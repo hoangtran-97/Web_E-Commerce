@@ -25,7 +25,7 @@
     gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     padding: 20px;
-    grid-auto-rows: 150px;
+    grid-auto-rows: 320px;
     width: 90%;
     padding-bottom: 40px;
 }

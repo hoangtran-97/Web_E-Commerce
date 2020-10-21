@@ -2,13 +2,23 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    align-items: center;
+    align-items: flex-end;
     width: 300px;
+    height: 300px;
     border-radius: 10px;
     margin: auto;
+    background-blend-mode: color;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(68, 62, 62, 0.7);
+    position: relative;
 }
 
 .icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     width: 30px;
     height: 30px;
     color: red;
