@@ -1,6 +1,6 @@
 import { ProductState, Product } from "./product";
 import { UiState } from "./ui";
-import { UserState } from "./user";
+import { User, UserState } from "./user";
 
 export * from "./user";
 export * from "./product";
@@ -12,6 +12,10 @@ export type AdminAddProductProps = { token: string };
 
 export type AdminProductItemProps = {
     product: Product;
+};
+
+export type AdminUserItemProps = {
+    user: User;
 };
 
 export type HomeProps = {

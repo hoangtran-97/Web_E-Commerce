@@ -8,15 +8,20 @@ import { ThemeContext } from "../../context";
 import styles from "./Profile.module.css";
 import { AdminProductItem } from "../../components/AdminProductItem";
 import { AdminAddProduct } from "../../components/AdminAddProduct";
+import { useUser } from "../../hooks/useUser";
+import { AdminUserItem } from "../../components/AdminUserItem";
 
 export const Profile = () => {
     const { theme } = useContext(ThemeContext);
-    const bg = { backgroundColor: theme.background };
-    const fg = { backgroundColor: theme.foreground };
-    const tx = { color: theme.text };
     const { currentUser, token } = useSelector((state: AppState) => state.user);
     const { list } = useSelector((state: AppState) => state.product);
+    const [users] = useUser();
+
+    const bg = { backgroundColor: theme.background };
+    const tx = { color: theme.text };
     const { userName, isAdmin } = currentUser;
+
+    console.log(users);
     return (
         <div className={styles.container} style={bg}>
             <p>
@@ -45,6 +50,14 @@ export const Profile = () => {
                 </TabList>
                 <TabPanel className={styles.tab__panel}>
                     <h2>User managements here</h2>
+                    <div className={styles.tab__panel__grid}>
+                        {users.map(item => (
+                            <AdminUserItem
+                                key={item._id}
+                                user={item}
+                            ></AdminUserItem>
+                        ))}
+                    </div>
                 </TabPanel>
                 <TabPanel className={styles.tab__panel}>
                     <h2>Remove products from the store</h2>
