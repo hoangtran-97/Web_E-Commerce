@@ -48,12 +48,14 @@ export const Profile = () => {
                 </TabPanel>
                 <TabPanel className={styles.tab__panel}>
                     <h2>Remove products from the store</h2>
-                    {list.map(item => (
-                        <AdminProductItem
-                            key={item._id}
-                            product={item}
-                        ></AdminProductItem>
-                    ))}
+                    <div className={styles.tab__panel__grid}>
+                        {list.map(item => (
+                            <AdminProductItem
+                                key={item._id}
+                                product={item}
+                            ></AdminProductItem>
+                        ))}
+                    </div>
                 </TabPanel>
                 <TabPanel className={styles.tab__panel}>
                     <h2>Add a product to the store</h2>
