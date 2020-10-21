@@ -11,11 +11,16 @@ export const AdminUserItem = ({ user }: AdminUserItemProps) => {
     const { _id, userName, email, isAdmin, isBanned } = user;
     return (
         <div className={styles.container} style={{ ...fg, ...tx }}>
-            <p>User Name: {userName}</p>
-            <p>Id: {_id}</p>
-            <p>Email: {email}</p>
-            {isAdmin && <p>Is an Admin</p>}
-            <p>{isBanned}</p>
+            <div>
+                <p>
+                    User Name: {userName} {isAdmin && <span> - Admin</span>}
+                </p>
+                <p>Id: {_id}</p>
+                <p>Email: {email}</p>
+            </div>
+            {!isAdmin && (
+                <>{!isBanned ? <button>Ban</button> : <button>Unban</button>}</>
+            )}
         </div>
     );
 };
