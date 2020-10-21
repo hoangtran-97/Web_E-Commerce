@@ -71,7 +71,6 @@ export const Profile = () => {
                     </div>
                 </TabPanel>
                 <TabPanel className={styles.tab__panel}>
-                    <h2>Add a product to the store</h2>
                     <AdminAddProduct token={token} />
                 </TabPanel>
             </Tabs>

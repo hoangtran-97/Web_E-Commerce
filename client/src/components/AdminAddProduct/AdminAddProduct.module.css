@@ -1,0 +1,10 @@
+.form {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90vw;
+    padding-left: 30px;
+    height: 500px;
+}
