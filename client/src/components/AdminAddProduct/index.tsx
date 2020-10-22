@@ -1,7 +1,9 @@
 import React from "react";
-import { useFormik, Formik, Form, Field, FieldArray } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 
+import { addProductListDB } from "../../redux/actions";
 import { AdminAddProductProps } from "../../typings";
 import styles from "./AdminAddProduct.module.css";
 
@@ -25,6 +27,7 @@ const validationSchema = Yup.object().shape({
         .integer(),
 });
 export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
+    const dispatch = useDispatch();
     return (
         <div className={styles.container}>
             <h2>Add new product to the store</h2>
@@ -40,7 +43,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={values => {
-                    console.log(values);
+                    dispatch(addProductListDB(values));
                 }}
             >
                 {({ values, errors, touched }) => (

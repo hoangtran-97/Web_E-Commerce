@@ -4,6 +4,7 @@ import {
     RECEIVE_PRODUCTS,
     ADD_PRODUCT,
     REMOVE_PRODUCT,
+    ADD_PRODUCT_LIST,
 } from "../../typings";
 
 export default function products(
@@ -26,6 +27,14 @@ export default function products(
                 return state;
             }
             return { ...state, inCart: [...state.inCart, product] };
+        }
+        case ADD_PRODUCT_LIST: {
+            const { product } = action.payload;
+            console.log("new product", product);
+            if (state.list.find(p => p.name === product.name)) {
+                return state;
+            }
+            return { ...state, list: [...state.list, product] };
         }
         case REMOVE_PRODUCT: {
             const { product } = action.payload;

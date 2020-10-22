@@ -10,7 +10,7 @@ export const useProduct = (query: string) => {
     const products = useSelector((state: AppState) => state.product.list);
     useEffect(() => {
         dispatch(fetchProducts());
-    }, [dispatch]);
+    }, []);
     useEffect(() => {
         setData(products);
     }, [products]);

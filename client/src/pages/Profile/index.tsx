@@ -20,8 +20,6 @@ export const Profile = () => {
     const bg = { backgroundColor: theme.background };
     const tx = { color: theme.text };
     const { userName, isAdmin } = currentUser;
-
-    console.log(users);
     return (
         <div className={styles.container} style={bg}>
             <p>

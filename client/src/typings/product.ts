@@ -1,9 +1,10 @@
 export const ADD_PRODUCT = "ADD_PRODUCT";
+export const ADD_PRODUCT_LIST = "ADD_PRODUCT_LIST";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
 
 export type Product = {
-    _id: string;
+    _id?: string;
     name: string;
     description: string;
     categories: string[];
@@ -26,6 +27,13 @@ export type AddProductAction = {
     };
 };
 
+export type AddProductListAction = {
+    type: typeof ADD_PRODUCT_LIST;
+    payload: {
+        product: Product;
+    };
+};
+
 export type RemoveProductAction = {
     type: typeof REMOVE_PRODUCT;
     payload: {
@@ -35,6 +43,7 @@ export type RemoveProductAction = {
 
 export type ProductActions =
     | AddProductAction
+    | AddProductListAction
     | RemoveProductAction
     | ReceiveProductsAction;
 

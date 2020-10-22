@@ -7,6 +7,7 @@ import {
     RECEIVE_PRODUCTS,
     REMOVE_PRODUCT,
     ADD_PRODUCT,
+    ADD_PRODUCT_LIST,
 } from "../../typings";
 
 export const addProduct = (product: Product): ProductActions => {
@@ -36,7 +37,17 @@ export const receiveProducts = (products: Product[]): ProductActions => {
     };
 };
 
+export const addProductList = (product: Product): ProductActions => {
+    return {
+        type: ADD_PRODUCT_LIST,
+        payload: {
+            product,
+        },
+    };
+};
+
 //TODO: Fix API link after upload
+//TODO: FIX addProductListDB using token both front and back-end
 export const fetchProducts = () => {
     return (dispatch: Dispatch) => {
         return fetch("http://localhost:3001/api/v1/products").then(res =>
@@ -66,6 +77,26 @@ export const addProductDB = (
             .then(response => response.json())
             .then(data => {
                 dispatch(addProduct(product));
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    };
+};
+
+export const addProductListDB = (product: Product) => {
+    console.log("in action", JSON.stringify(product));
+    return (dispatch: Dispatch) => {
+        return fetch("http://localhost:3001/api/v1/products/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("response data", data);
             })
             .catch(error => {
                 console.error("Error:", error);
