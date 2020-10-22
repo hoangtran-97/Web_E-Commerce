@@ -10,70 +10,38 @@ const validationSchema = Yup.object().shape({
     variants: Yup.string().required("  Required"),
 });
 export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
-    const formik = useFormik({
-        initialValues: {
-            name: "",
-            description: "",
-            categories: [],
-            variants: [],
-            sizes: [],
-            img: "",
-            price: "",
-        },
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
     return (
         <div className={styles.container}>
             <h2>Add new product to the store</h2>
-            {/* <form onSubmit={formik.handleSubmit} className={styles.form} >
-                <label htmlFor="name">Product name:</label>
-                <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.name}
-                />
-                <label htmlFor="description">Product description:</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    onChange={formik.handleChange}
-                    value={formik.values.description}
-                />
-                <label htmlFor="name">Product category:</label>
-                <input
-                    id="categories"
-                    name="categories"
-                    type="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.categories}
-                />
-                <label htmlFor="description">Product description:</label>
-                <button type="submit">Submit</button>
-            </form> */}
             <div>
-                <h1>Friend List</h1>
+                <h2>New Product</h2>
                 <Formik
-                    initialValues={{ friends: ["jared", "ian", "brent"] }}
+                    initialValues={{
+                        name: "",
+                        description: "",
+                        categories: [],
+                        variants: [],
+                        sizes: [],
+                        img: "",
+                        price: "",
+                        friends: ["jared", "ian", "brent"],
+                    }}
                     onSubmit={values => {
                         console.log(values);
                     }}
-                    render={({ values }) => (
-                        <Form>
-                            <FieldArray
-                                name="friends"
-                                render={arrayHelpers => (
-                                    <div>
-                                        {values.friends &&
-                                        values.friends.length > 0 ? (
-                                                values.friends.map(
-                                                    (friend, index) => (
+                >
+                    {({ values }) => (
+                        <Form className={styles.form}>
+                            <FieldArray name="categories">
+                                {arrayHelpers => (
+                                    <>
+                                        {values.categories &&
+                                        values.categories.length > 0 ? (
+                                                values.categories.map(
+                                                    (category, index) => (
                                                         <div key={index}>
                                                             <Field
-                                                                name={`friends.${index}`}
+                                                                name={`categories.${index}`}
                                                             />
                                                             <button
                                                                 type="button"
@@ -81,7 +49,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                                                     arrayHelpers.remove(
                                                                         index
                                                                     )
-                                                                } // remove a friend from the list
+                                                                }
                                                             >
                                                             -
                                                             </button>
@@ -92,7 +60,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                                                         index,
                                                                         ""
                                                                     )
-                                                                } // insert an empty string at a position
+                                                                }
                                                             >
                                                             +
                                                             </button>
@@ -106,21 +74,112 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                                         arrayHelpers.push("")
                                                     }
                                                 >
-                                                    {/* show this when user has removed all friends from the list */}
-                                                Add a friend
+                                                Add a category
                                                 </button>
                                             )}
-                                        <div>
-                                            <button type="submit">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </>
                                 )}
-                            />
+                            </FieldArray>
+                            <FieldArray name="variants">
+                                {arrayHelpers => (
+                                    <>
+                                        {values.variants &&
+                                        values.variants.length > 0 ? (
+                                                values.variants.map(
+                                                    (variant, index) => (
+                                                        <div key={index}>
+                                                            <Field
+                                                                name={`variants.${index}`}
+                                                            />
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    arrayHelpers.remove(
+                                                                        index
+                                                                    )
+                                                                }
+                                                            >
+                                                            -
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    arrayHelpers.insert(
+                                                                        index,
+                                                                        ""
+                                                                    )
+                                                                }
+                                                            >
+                                                            +
+                                                            </button>
+                                                        </div>
+                                                    )
+                                                )
+                                            ) : (
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        arrayHelpers.push("")
+                                                    }
+                                                >
+                                                Add a variant
+                                                </button>
+                                            )}
+                                    </>
+                                )}
+                            </FieldArray>
+                            <FieldArray name="sizes">
+                                {arrayHelpers => (
+                                    <>
+                                        {values.sizes &&
+                                        values.sizes.length > 0 ? (
+                                                values.sizes.map((size, index) => (
+                                                    <div key={index}>
+                                                        <Field
+                                                            name={`sizes.${index}`}
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                arrayHelpers.remove(
+                                                                    index
+                                                                )
+                                                            }
+                                                        >
+                                                        -
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                arrayHelpers.insert(
+                                                                    index,
+                                                                    ""
+                                                                )
+                                                            }
+                                                        >
+                                                        +
+                                                        </button>
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        arrayHelpers.push("")
+                                                    }
+                                                >
+                                                Add a size
+                                                </button>
+                                            )}
+                                    </>
+                                )}
+                            </FieldArray>
+                            <div>
+                                <button type="submit">Submit</button>
+                            </div>
                         </Form>
                     )}
-                />
+                </Formik>
             </div>
         </div>
     );
