@@ -105,8 +105,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                                         <button
                                                             type="button"
                                                             onClick={() =>
-                                                                arrayHelpers.insert(
-                                                                    index,
+                                                                arrayHelpers.push(
                                                                     ""
                                                                 )
                                                             }
@@ -160,8 +159,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                                         <button
                                                             type="button"
                                                             onClick={() =>
-                                                                arrayHelpers.insert(
-                                                                    index,
+                                                                arrayHelpers.push(
                                                                     ""
                                                                 )
                                                             }
@@ -214,10 +212,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                                 <button
                                                     type="button"
                                                     onClick={() =>
-                                                        arrayHelpers.insert(
-                                                            index,
-                                                            ""
-                                                        )
+                                                        arrayHelpers.push(0)
                                                     }
                                                 >
                                                     +
@@ -228,9 +223,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                         <button
                                             className={styles.button__add}
                                             type="button"
-                                            onClick={() =>
-                                                arrayHelpers.push("")
-                                            }
+                                            onClick={() => arrayHelpers.push(0)}
                                         >
                                             Add a size
                                         </button>
