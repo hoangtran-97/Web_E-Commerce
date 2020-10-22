@@ -27,7 +27,7 @@ export const Profile = () => {
             <p>
                 {userName} {isAdmin && <span>- ADMIN</span>}
             </p>
-            <Tabs className={styles.tab}>
+            <Tabs className={styles.tab} defaultIndex={2}>
                 <TabList className={styles.tab__list}>
                     <Tab
                         style={tx}
