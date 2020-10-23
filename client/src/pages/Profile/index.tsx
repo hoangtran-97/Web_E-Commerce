@@ -12,6 +12,7 @@ import { useUser } from "../../hooks/useUser";
 import { AdminUserItem } from "../../components/AdminUserItem";
 import { removeUser } from "../../redux/actions";
 import styles from "./Profile.module.css";
+import { GoogleLogoutButton } from "../../components/GoogleLogoutButton";
 
 export const Profile = () => {
     const { theme } = useContext(ThemeContext);
@@ -39,6 +40,7 @@ export const Profile = () => {
             >
                 Logout
             </button>
+            <GoogleLogoutButton></GoogleLogoutButton>
             {isAdmin && (
                 <Tabs className={styles.tab}>
                     <TabList className={styles.tab__list}>
