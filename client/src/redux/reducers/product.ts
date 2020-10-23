@@ -5,6 +5,7 @@ import {
     ADD_PRODUCT,
     REMOVE_PRODUCT,
     ADD_PRODUCT_LIST,
+    REMOVE_PRODUCT_LIST,
 } from "../../typings";
 
 export default function products(
@@ -42,6 +43,15 @@ export default function products(
             if (index >= 0) {
                 state.inCart.splice(index, 1);
                 return { ...state, inCart: [...state.inCart] };
+            }
+            return state;
+        }
+        case REMOVE_PRODUCT_LIST: {
+            const { product } = action.payload;
+            const index = state.list.findIndex(p => p.name === product.name);
+            if (index >= 0) {
+                state.list.splice(index, 1);
+                return { ...state, list: [...state.list] };
             }
             return state;
         }

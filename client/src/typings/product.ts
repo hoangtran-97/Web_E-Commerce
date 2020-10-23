@@ -1,6 +1,7 @@
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const ADD_PRODUCT_LIST = "ADD_PRODUCT_LIST";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const REMOVE_PRODUCT_LIST = "REMOVE_PRODUCT_LIST";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
 
 export type Product = {
@@ -41,10 +42,18 @@ export type RemoveProductAction = {
     };
 };
 
+export type RemoveProductListAction = {
+    type: typeof REMOVE_PRODUCT_LIST;
+    payload: {
+        product: Product;
+    };
+};
+
 export type ProductActions =
     | AddProductAction
     | AddProductListAction
     | RemoveProductAction
+    | RemoveProductListAction
     | ReceiveProductsAction;
 
 export type ProductCardProps = {

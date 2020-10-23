@@ -6,6 +6,7 @@ import {
     Product,
     RECEIVE_PRODUCTS,
     REMOVE_PRODUCT,
+    REMOVE_PRODUCT_LIST,
     ADD_PRODUCT,
     ADD_PRODUCT_LIST,
 } from "../../typings";
@@ -40,6 +41,15 @@ export const receiveProducts = (products: Product[]): ProductActions => {
 export const addProductList = (product: Product): ProductActions => {
     return {
         type: ADD_PRODUCT_LIST,
+        payload: {
+            product,
+        },
+    };
+};
+
+export const removeProductList = (product: Product): ProductActions => {
+    return {
+        type: REMOVE_PRODUCT_LIST,
         payload: {
             product,
         },
@@ -129,6 +139,24 @@ export const removeProductDB = (
             .then(response => response.json())
             .then(data => {
                 dispatch(removeProduct(product));
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    };
+};
+
+export const removeProductListDB = (_id: string, product: Product) => {
+    return (dispatch: Dispatch) => {
+        return fetch(`http://localhost:3001/api/v1/products/${_id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(res => {
+                console.log("response data", res);
+                res.status === 204 && dispatch(removeProductList(product));
             })
             .catch(error => {
                 console.error("Error:", error);

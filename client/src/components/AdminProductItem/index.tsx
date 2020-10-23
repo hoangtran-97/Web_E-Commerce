@@ -1,23 +1,22 @@
 import React, { useContext } from "react";
 import { GiCancel } from "react-icons/gi";
+import { useDispatch } from "react-redux";
 
+import { removeProductListDB } from "../../redux/actions";
 import { AdminProductItemProps } from "../../typings";
 import { ThemeContext } from "../../context";
+
 import styles from "./AdminProductItem.module.css";
 
 export const AdminProductItem = ({ product }: AdminProductItemProps) => {
     const { _id, name, img } = product;
     const { theme } = useContext(ThemeContext);
+    const dispatch = useDispatch();
     const tx = { color: theme.text };
     const fg = { backgroundColor: theme.foreground };
     //Add token to delete API
     const removeProduct = () => {
-        fetch(`http://localhost:3001/api/v1/products/${_id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        _id && dispatch(removeProductListDB(_id, product));
     };
     return (
         <div
