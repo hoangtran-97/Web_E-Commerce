@@ -27,7 +27,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
     };
     return (
         <div className={styles.container} style={fg}>
-            <button className={styles.left} onClick={() => goHome()}>
+            <Link className={styles.left} to="/">
                 <Player
                     autoplay
                     loop
@@ -37,7 +37,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                 <p style={tx} className={styles.left__text}>
                     E-Commerce
                 </p>
-            </button>
+            </Link>
             {pathname === "/" && <Search query={query} setQuery={setQuery} />}
             <div className={styles.right}>
                 {token ? (
