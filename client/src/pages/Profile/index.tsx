@@ -39,53 +39,55 @@ export const Profile = () => {
             >
                 Logout
             </button>
-            <Tabs className={styles.tab}>
-                <TabList className={styles.tab__list}>
-                    <Tab
-                        style={tx}
-                        selectedClassName={styles.tab__list__selected}
-                    >
-                        Users
-                    </Tab>
-                    <Tab
-                        style={tx}
-                        selectedClassName={styles.tab__list__selected}
-                    >
-                        Products
-                    </Tab>
-                    <Tab
-                        style={tx}
-                        selectedClassName={styles.tab__list__selected}
-                    >
-                        Add Product
-                    </Tab>
-                </TabList>
-                <TabPanel className={styles.tab__panel}>
-                    <h2>User managements here</h2>
-                    <div className={styles.tab__panel__grid}>
-                        {users.map(item => (
-                            <AdminUserItem
-                                key={item._id}
-                                user={item}
-                            ></AdminUserItem>
-                        ))}
-                    </div>
-                </TabPanel>
-                <TabPanel className={styles.tab__panel}>
-                    <h2>Remove products from the store</h2>
-                    <div className={styles.tab__panel__grid}>
-                        {list.map(item => (
-                            <AdminProductItem
-                                key={item._id}
-                                product={item}
-                            ></AdminProductItem>
-                        ))}
-                    </div>
-                </TabPanel>
-                <TabPanel className={styles.tab__panel}>
-                    <AdminAddProduct token={token} />
-                </TabPanel>
-            </Tabs>
+            {isAdmin && (
+                <Tabs className={styles.tab}>
+                    <TabList className={styles.tab__list}>
+                        <Tab
+                            style={tx}
+                            selectedClassName={styles.tab__list__selected}
+                        >
+                            Users
+                        </Tab>
+                        <Tab
+                            style={tx}
+                            selectedClassName={styles.tab__list__selected}
+                        >
+                            Products
+                        </Tab>
+                        <Tab
+                            style={tx}
+                            selectedClassName={styles.tab__list__selected}
+                        >
+                            Add Product
+                        </Tab>
+                    </TabList>
+                    <TabPanel className={styles.tab__panel}>
+                        <h2>User managements here</h2>
+                        <div className={styles.tab__panel__grid}>
+                            {users.map(item => (
+                                <AdminUserItem
+                                    key={item._id}
+                                    user={item}
+                                ></AdminUserItem>
+                            ))}
+                        </div>
+                    </TabPanel>
+                    <TabPanel className={styles.tab__panel}>
+                        <h2>Remove products from the store</h2>
+                        <div className={styles.tab__panel__grid}>
+                            {list.map(item => (
+                                <AdminProductItem
+                                    key={item._id}
+                                    product={item}
+                                ></AdminProductItem>
+                            ))}
+                        </div>
+                    </TabPanel>
+                    <TabPanel className={styles.tab__panel}>
+                        <AdminAddProduct token={token} />
+                    </TabPanel>
+                </Tabs>
+            )}
         </div>
     );
 };
