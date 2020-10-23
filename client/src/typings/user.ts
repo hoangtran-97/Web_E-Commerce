@@ -2,6 +2,7 @@ export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const ADD_TOKEN = "ADD_TOKEN";
 export const RECEIVE_USERS = "RECEIVE_USERS";
+export const AUTHORIZE_USERS = "AUTHORIZE_USERS";
 
 export type User = {
     _id: string;
@@ -36,6 +37,14 @@ export type RemoveUserAction = {
         user: User;
     };
 };
+
+export type AuthorizeUserAction = {
+    type: typeof AUTHORIZE_USERS;
+    payload: {
+        user: User;
+    };
+};
+
 export type AddTokenAction = {
     type: typeof ADD_TOKEN;
     payload: {
@@ -52,4 +61,5 @@ export type UserActions =
     | AddUserAction
     | AddTokenAction
     | RemoveUserAction
+    | AuthorizeUserAction
     | ReceiveUsersAction;

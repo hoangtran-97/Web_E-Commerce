@@ -8,6 +8,7 @@ import {
     Product,
     REMOVE_USER,
     RECEIVE_USERS,
+    AUTHORIZE_USERS,
 } from "../../typings";
 import { addProduct } from "../actions";
 
@@ -23,6 +24,15 @@ export const addUser = (user: User): UserActions => {
 export const removeUser = (user: User): UserActions => {
     return {
         type: REMOVE_USER,
+        payload: {
+            user,
+        },
+    };
+};
+
+export const authorizeUser = (user: User): UserActions => {
+    return {
+        type: AUTHORIZE_USERS,
         payload: {
             user,
         },
@@ -90,5 +100,32 @@ export const fetchUsers = () => {
                 dispatch(receiveUsers(users));
             })
         );
+    };
+};
+
+export const authorizeUserDB = (
+    user: User,
+    banStatus: boolean,
+    _id: string,
+    token: string
+) => {
+    return (dispatch: Dispatch) => {
+        const updateUser = { ...user, isBanned: `${banStatus}` };
+
+        return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "bearer " + token,
+            },
+            body: JSON.stringify(updateUser),
+        })
+            .then(response => response.json())
+            .then(data => {
+                dispatch(authorizeUser(data));
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
     };
 };

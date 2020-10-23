@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { authorizeUserDB } from "../../redux/actions";
 import { ThemeContext } from "../../context";
-import { AdminUserItemProps } from "../../typings";
+import { AdminUserItemProps, AppState } from "../../typings";
 import styles from "./AdminUserItem.module.css";
 
 export const AdminUserItem = ({ user }: AdminUserItemProps) => {
+    const { token } = useSelector((state: AppState) => state.user);
     const { theme } = useContext(ThemeContext);
+    const dispatch = useDispatch();
     const tx = { color: theme.text };
     const fg = { backgroundColor: theme.foreground };
     const { _id, userName, email, isAdmin, isBanned } = user;
@@ -19,7 +23,29 @@ export const AdminUserItem = ({ user }: AdminUserItemProps) => {
                 <p>Email: {email}</p>
             </div>
             {!isAdmin && (
-                <>{!isBanned ? <button>Ban</button> : <button>Unban</button>}</>
+                <>
+                    {!isBanned ? (
+                        <button
+                            onClick={() => {
+                                dispatch(
+                                    authorizeUserDB(user, true, _id, token)
+                                );
+                            }}
+                        >
+                            Ban
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => {
+                                dispatch(
+                                    authorizeUserDB(user, false, _id, token)
+                                );
+                            }}
+                        >
+                            Unban
+                        </button>
+                    )}
+                </>
             )}
         </div>
     );
