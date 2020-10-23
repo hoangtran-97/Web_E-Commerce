@@ -1,11 +1,27 @@
 import { Dispatch } from "redux";
 
-import { ADD_USER, UserActions, User, ADD_TOKEN, Product } from "../../typings";
+import {
+    ADD_USER,
+    UserActions,
+    User,
+    ADD_TOKEN,
+    Product,
+    REMOVE_USER,
+} from "../../typings";
 import { addProduct } from "../actions";
 
 export const addUser = (user: User): UserActions => {
     return {
         type: ADD_USER,
+        payload: {
+            user,
+        },
+    };
+};
+
+export const removeUser = (user: User): UserActions => {
+    return {
+        type: REMOVE_USER,
         payload: {
             user,
         },
@@ -35,7 +51,7 @@ export const updateUser = (
     const updateUser = { ...user, cart: [...result] };
     return (dispatch: Dispatch) => {
         fetch(`http://localhost:3001/api/v1/users/${_id}`, {
-            method: "PUT", // or 'PUT'
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "bearer " + token,

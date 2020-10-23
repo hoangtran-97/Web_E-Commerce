@@ -1,4 +1,5 @@
 export const ADD_USER = "ADD_USER";
+export const REMOVE_USER = "REMOVE_USER";
 export const ADD_TOKEN = "ADD_TOKEN";
 
 export type User = {
@@ -20,6 +21,13 @@ export type AddUserAction = {
         user: User;
     };
 };
+
+export type RemoveUserAction = {
+    type: typeof REMOVE_USER;
+    payload: {
+        user: User;
+    };
+};
 export type AddTokenAction = {
     type: typeof ADD_TOKEN;
     payload: {
@@ -31,4 +39,4 @@ export type UserState = {
     token: string;
 };
 
-export type UserActions = AddUserAction | AddTokenAction;
+export type UserActions = AddUserAction | AddTokenAction | RemoveUserAction;
