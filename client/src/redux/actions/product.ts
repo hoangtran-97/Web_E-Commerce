@@ -106,7 +106,7 @@ export const addProductListDB = (product: Product) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("response data", data);
+                dispatch(addProductList(data));
             })
             .catch(error => {
                 console.error("Error:", error);
