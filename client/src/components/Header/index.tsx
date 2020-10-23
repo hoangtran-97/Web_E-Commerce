@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ import styles from "./Header.module.css";
 export const Header = ({ query, setQuery }: HeaderProps) => {
     const { theme } = useContext(ThemeContext);
     const location = useLocation();
+    const history = useHistory();
     const { pathname } = location;
     const fg = { backgroundColor: theme.foreground };
     const bg = { backgroundColor: theme.background };
@@ -21,10 +22,12 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
     // const result = regex.test(pathname);
     const cart = useSelector((state: AppState) => state.product.inCart);
     const { token, currentUser } = useSelector((state: AppState) => state.user);
-
+    const goHome = () => {
+        history.push("/");
+    };
     return (
         <div className={styles.container} style={fg}>
-            <Link className={styles.left} to="/">
+            <button className={styles.left} onClick={() => goHome()}>
                 <Player
                     autoplay
                     loop
@@ -34,7 +37,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                 <p style={tx} className={styles.left__text}>
                     E-Commerce
                 </p>
-            </Link>
+            </button>
             {pathname === "/" && <Search query={query} setQuery={setQuery} />}
             <div className={styles.right}>
                 {token ? (
