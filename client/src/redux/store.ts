@@ -15,6 +15,7 @@ const initState: AppState = {
         dialogOpen: {},
     },
     user: {
+        list: [],
         currentUser: {} as User,
         token: "",
     },

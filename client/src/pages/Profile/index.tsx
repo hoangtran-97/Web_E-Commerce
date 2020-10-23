@@ -16,10 +16,10 @@ export const Profile = () => {
     const { theme } = useContext(ThemeContext);
     const { currentUser, token } = useSelector((state: AppState) => state.user);
     const { list } = useSelector((state: AppState) => state.product);
-    const [users] = useUser();
     const bg = { backgroundColor: theme.background };
     const tx = { color: theme.text };
     const { userName, isAdmin } = currentUser;
+    const [users] = useUser();
     return (
         <div className={styles.container} style={bg}>
             <p>

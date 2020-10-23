@@ -1,6 +1,7 @@
 export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const ADD_TOKEN = "ADD_TOKEN";
+export const RECEIVE_USERS = "RECEIVE_USERS";
 
 export type User = {
     _id: string;
@@ -13,6 +14,13 @@ export type User = {
     password: string;
     googleId: string;
     cart: string[];
+};
+
+export type ReceiveUsersAction = {
+    type: typeof RECEIVE_USERS;
+    payload: {
+        users: User[];
+    };
 };
 
 export type AddUserAction = {
@@ -35,8 +43,13 @@ export type AddTokenAction = {
     };
 };
 export type UserState = {
+    list: User[];
     currentUser: User;
     token: string;
 };
 
-export type UserActions = AddUserAction | AddTokenAction | RemoveUserAction;
+export type UserActions =
+    | AddUserAction
+    | AddTokenAction
+    | RemoveUserAction
+    | ReceiveUsersAction;

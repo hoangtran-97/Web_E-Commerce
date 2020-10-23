@@ -1,24 +1,19 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { User } from "../typings";
+import { fetchUsers } from "../redux/actions/";
+import { AppState, User } from "../typings";
 
 export const useUser = () => {
     const [data, setData] = useState<User[]>([]);
+    const dispatch = useDispatch();
+    const users = useSelector((state: AppState) => state.user.list);
 
     useEffect(() => {
-        const loadData = async () => {
-            try {
-                const response = await fetch(
-                    "http://localhost:3001/api/v1/users/"
-                );
-                const json = await response.json();
-                setData(json);
-            } catch (error) {
-                // setError(error);
-            }
-        };
-        loadData();
+        dispatch(fetchUsers());
     }, []);
-
+    useEffect(() => {
+        setData(users);
+    }, [users]);
     return [data];
 };

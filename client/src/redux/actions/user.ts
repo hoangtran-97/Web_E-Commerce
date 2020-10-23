@@ -7,6 +7,7 @@ import {
     ADD_TOKEN,
     Product,
     REMOVE_USER,
+    RECEIVE_USERS,
 } from "../../typings";
 import { addProduct } from "../actions";
 
@@ -33,6 +34,15 @@ export const addToken = (token: string): UserActions => {
         type: ADD_TOKEN,
         payload: {
             token,
+        },
+    };
+};
+
+export const receiveUsers = (users: User[]): UserActions => {
+    return {
+        type: RECEIVE_USERS,
+        payload: {
+            users,
         },
     };
 };
@@ -70,5 +80,15 @@ export const updateUser = (
             .catch(error => {
                 console.error("Error:", error);
             });
+    };
+};
+
+export const fetchUsers = () => {
+    return (dispatch: Dispatch) => {
+        return fetch("http://localhost:3001/api/v1/users/").then(res =>
+            res.json().then(users => {
+                dispatch(receiveUsers(users));
+            })
+        );
     };
 };
