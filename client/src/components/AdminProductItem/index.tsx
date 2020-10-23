@@ -10,6 +10,15 @@ export const AdminProductItem = ({ product }: AdminProductItemProps) => {
     const { theme } = useContext(ThemeContext);
     const tx = { color: theme.text };
     const fg = { backgroundColor: theme.foreground };
+    //Add token to delete API
+    const removeProduct = () => {
+        fetch(`http://localhost:3001/api/v1/products/${_id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    };
     return (
         <div
             className={styles.container}
@@ -19,7 +28,10 @@ export const AdminProductItem = ({ product }: AdminProductItemProps) => {
                 <h3>{name}</h3>
                 <h5>{_id}</h5>
             </div>
-            <GiCancel className={styles.icon}></GiCancel>
+            <GiCancel
+                className={styles.icon}
+                onClick={removeProduct}
+            ></GiCancel>
         </div>
     );
 };
