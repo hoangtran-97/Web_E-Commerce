@@ -24,15 +24,20 @@ export default function products(
             };
         case ADD_PRODUCT: {
             const { product } = action.payload;
-            if (state.inCart.find(p => p.name === product.name)) {
+            const productExist = state.inCart.find(
+                p => p.name === product.name
+            );
+            if (productExist) {
                 return state;
             }
             return { ...state, inCart: [...state.inCart, product] };
         }
         case ADD_PRODUCT_LIST: {
             const { product } = action.payload;
-            console.log("new product", product);
-            if (state.list.find(p => p.name === product.name)) {
+            const productExist = state.inCart.find(
+                p => p.name === product.name
+            );
+            if (productExist) {
                 return state;
             }
             return { ...state, list: [...state.list, product] };
