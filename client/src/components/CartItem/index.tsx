@@ -14,21 +14,20 @@ export const CartItem = ({ item }: CartItemProps) => {
     const fg = { backgroundColor: theme.foreground };
     const tx = { color: theme.text };
     const { _id } = currentUser;
+    const onClick = () => {
+        if (_id) {
+            dispatch(removeProductDB(currentUser, item, _id, token));
+        } else {
+            dispatch(removeProduct(item));
+        }
+    };
     return (
         <div className={styles.container}>
             <ProductCard product={item} key={item._id} noFlag></ProductCard>
             <button
                 className={styles.button}
                 style={{ ...fg, ...tx }}
-                onClick={() => {
-                    if (_id) {
-                        dispatch(
-                            removeProductDB(currentUser, item, _id, token)
-                        );
-                    } else {
-                        dispatch(removeProduct(item));
-                    }
-                }}
+                onClick={onClick}
             >
                 Remove from cart
             </button>
