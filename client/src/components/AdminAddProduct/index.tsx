@@ -62,11 +62,11 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                             name="description"
                             placeholder="This product is..."
                         />
-                        {errors.description && touched.description ? (
+                        {errors.description && touched.description && (
                             <div className={styles.error}>
                                 {errors.description}
                             </div>
-                        ) : null}
+                        )}
                         <label htmlFor="img">Product image:</label>
                         <Field
                             id="img"
@@ -80,9 +80,9 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                             name="price"
                             placeholder="in EUR"
                         />
-                        {errors.price && touched.price ? (
+                        {errors.price && touched.price && (
                             <div className={styles.error}>{errors.price}</div>
-                        ) : null}
+                        )}
                         <label htmlFor="categories">Categories:</label>
                         <FieldArray name="categories">
                             {arrayHelpers => (
@@ -132,11 +132,11 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                 </>
                             )}
                         </FieldArray>
-                        {errors.categories && touched.categories ? (
+                        {errors.categories && touched.categories && (
                             <div className={styles.error}>
                                 {errors.categories}
                             </div>
-                        ) : null}
+                        )}
                         <label htmlFor="variants">Variants:</label>
                         <FieldArray name="variants">
                             {arrayHelpers => (
@@ -186,11 +186,11 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                 </>
                             )}
                         </FieldArray>
-                        {errors.variants && touched.variants ? (
+                        {errors.variants && touched.variants && (
                             <div className={styles.error}>
                                 {errors.variants}
                             </div>
-                        ) : null}
+                        )}
                         <label htmlFor="sizes">Sizes:</label>
                         <FieldArray name="sizes">
                             {arrayHelpers => (
@@ -234,9 +234,9 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                 </>
                             )}
                         </FieldArray>
-                        {errors.sizes && touched.sizes ? (
+                        {errors.sizes && touched.sizes && (
                             <div className={styles.error}>{errors.sizes}</div>
-                        ) : null}
+                        )}
                         <div>
                             <button
                                 className={styles.button__submit}
