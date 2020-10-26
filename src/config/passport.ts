@@ -40,8 +40,7 @@ passport.use(
                         userName: name,
                         firstName: given_name,
                         lastName: family_name,
-                        isAdmin:
-                            email === "hoang.tran@integrify.io" ? true : false,
+                        isAdmin: email === "hoang.tran@integrify.io",
                     })
                         .save()
                         .then(newUser => {
