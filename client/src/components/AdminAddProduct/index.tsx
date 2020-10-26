@@ -91,7 +91,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                     values.categories.length > 0 ? (
                                             values.categories.map(
                                                 (category, index) => (
-                                                    <div key={index}>
+                                                    <div key={category}>
                                                         <Field
                                                             name={`categories.${index}`}
                                                         />
@@ -145,7 +145,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                     values.variants.length > 0 ? (
                                             values.variants.map(
                                                 (variant, index) => (
-                                                    <div key={index}>
+                                                    <div key={variant}>
                                                         <Field
                                                             name={`variants.${index}`}
                                                         />
@@ -197,7 +197,7 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                 <>
                                     {values.sizes && values.sizes.length > 0 ? (
                                         values.sizes.map((size, index) => (
-                                            <div key={index}>
+                                            <div key={size}>
                                                 <Field
                                                     type="number"
                                                     name={`sizes.${index}`}
