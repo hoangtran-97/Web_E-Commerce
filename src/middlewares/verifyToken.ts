@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
+import { JWT_SECRET } from "../util/secrets";
 import { UnauthorizedError } from "../helpers/apiError";
 
 const getTokenFrom = (req: Request) => {
@@ -19,7 +20,7 @@ export const verifyToken = (
     const token = getTokenFrom(req);
     if (token) {
         try {
-            jwt.verify(token, process.env.JWT_SECRET || "secret");
+            jwt.verify(token, JWT_SECRET);
         } catch (error) {
             next(new UnauthorizedError("token missing or invalid", error));
         }
