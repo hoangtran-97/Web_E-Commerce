@@ -41,17 +41,13 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
             {pathname === "/" && <Search query={query} setQuery={setQuery} />}
             <div className={styles.right}>
                 {token ? (
-                    <>
-                        <Link className={styles.login} style={tx} to="/profile">
-                            {currentUser.userName}
-                        </Link>
-                    </>
+                    <Link className={styles.login} style={tx} to="/profile">
+                        {currentUser.userName}
+                    </Link>
                 ) : (
-                    <>
-                        <Link className={styles.login} style={tx} to="/login">
-                            Login
-                        </Link>
-                    </>
+                    <Link className={styles.login} style={tx} to="/login">
+                        Login
+                    </Link>
                 )}
 
                 <Link className={styles.button__cart} to="/cart">
