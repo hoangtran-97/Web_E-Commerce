@@ -13,8 +13,8 @@ export const AdminProductItem = ({ product }: AdminProductItemProps) => {
     const { theme } = useContext(ThemeContext);
     const dispatch = useDispatch();
     const tx = { color: theme.text };
-    const fg = { backgroundColor: theme.foreground };
-    //Add token to delete API
+
+    //TODO: Add token to delete API
     const removeProduct = () => {
         _id && dispatch(removeProductListDB(_id, product));
     };
@@ -27,10 +27,7 @@ export const AdminProductItem = ({ product }: AdminProductItemProps) => {
                 <h3>{name}</h3>
                 <h5>{_id}</h5>
             </div>
-            <GiCancel
-                className={styles.icon}
-                onClick={removeProduct}
-            ></GiCancel>
+            <GiCancel className={styles.icon} onClick={removeProduct} />
         </div>
     );
 };
