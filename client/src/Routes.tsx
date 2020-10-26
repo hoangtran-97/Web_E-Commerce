@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Cart } from "./pages/Cart";
 import { Profile } from "./pages/Profile";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const Routes = () => {
     const [query, setQuery] = useState("");
@@ -22,7 +23,8 @@ const Routes = () => {
                 <Route exact path="/product/:id" component={ProductPage} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
-                <Route exact path="/profile" component={Profile} />
+                <ProtectedRoute exact path="/profile" component={Profile} />
+                <Route path="*" component={() => <p>404 not found</p>} />
             </Switch>
         </>
     );
