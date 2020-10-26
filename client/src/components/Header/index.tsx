@@ -33,7 +33,7 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
                     loop
                     src={require("./shoppin.json")}
                     style={{ height: "90px", width: "90px" }}
-                ></Player>
+                />
                 <p style={tx} className={styles.left__text}>
                     E-Commerce
                 </p>
