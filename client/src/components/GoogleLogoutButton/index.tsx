@@ -10,7 +10,7 @@ export const GoogleLogoutButton = () => {
     const { currentUser } = useSelector((state: AppState) => state.user);
     const dispatch = useDispatch();
     const history = useHistory();
-    const logout = () => {
+    const logout = async () => {
         history.push("/");
         dispatch(removeUser(currentUser));
     };

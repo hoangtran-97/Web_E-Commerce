@@ -14,9 +14,11 @@ const Routes = () => {
         <>
             <Header query={query} setQuery={setQuery}></Header>
             <Switch>
-                <Route exact path="/">
-                    <Home query={query} />
-                </Route>
+                <Route
+                    exact
+                    path="/"
+                    component={() => <Home query={query} />}
+                ></Route>
                 <Route exact path="/product/:id" component={ProductPage} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/cart" component={Cart} />
