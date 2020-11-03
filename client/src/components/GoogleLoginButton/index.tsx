@@ -13,6 +13,7 @@ export const GoogleLoginButton = () => {
     const list = useSelector((state: AppState) => state.product.list);
     const history = useHistory();
     const responseGoogle = async (response: any) => {
+        console.log("test", response);
         const res = await axios.post(
             "http://localhost:3001/api/v1/auth/googleTokenId",
             {

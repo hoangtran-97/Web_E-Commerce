@@ -7,6 +7,8 @@ import User from "../models/User";
 const GoogleTokenStrategy = require("passport-google-id-token");
 const GOOGLE_CLIENT_ID =
     "676751270206-bih2psso6vca65bg6ecicj7i4o42h940.apps.googleusercontent.com";
+const IOS_GOOGLE_CLIENT_ID =
+    "676751270206-grnc80muler331lnn376q4i2dksq65vu.apps.googleusercontent.com";
 passport.serializeUser<any, any>((user, done) => {
     done(null, user.id);
 });
@@ -20,7 +22,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(
     new GoogleTokenStrategy(
         {
-            clientID: GOOGLE_CLIENT_ID,
+            clientID: IOS_GOOGLE_CLIENT_ID,
         },
         function(parsedToken: any, googleId: string, done: any) {
             const {
