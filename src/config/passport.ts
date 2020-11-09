@@ -20,10 +20,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(
-    "google-id-token",
     new GoogleTokenStrategy(
         {
-            clientID: IOS_GOOGLE_CLIENT_ID,
+            clientID: [IOS_GOOGLE_CLIENT_ID, GOOGLE_CLIENT_ID],
         },
         function(parsedToken: any, googleId: string, done: any) {
             const {
