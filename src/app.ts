@@ -13,7 +13,6 @@ import cors from "cors";
 
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 
-import movieRouter from "./routers/movie";
 import userRouter from "./routers/user";
 import productRouter from "./routers/product";
 import authRouter from "./routers/auth";
@@ -57,7 +56,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
 
-app.use("/api/v1/movies", movieRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/auth", authRouter);

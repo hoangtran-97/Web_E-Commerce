@@ -1,5 +1,4 @@
 import mongoose, { Document } from "mongoose";
-import { ProductDocument } from "./Product";
 
 export type UserDocument = Document & {
     userName: string;
