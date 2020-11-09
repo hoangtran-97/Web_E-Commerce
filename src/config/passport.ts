@@ -9,6 +9,7 @@ const GOOGLE_CLIENT_ID =
     "676751270206-bih2psso6vca65bg6ecicj7i4o42h940.apps.googleusercontent.com";
 const IOS_GOOGLE_CLIENT_ID =
     "676751270206-grnc80muler331lnn376q4i2dksq65vu.apps.googleusercontent.com";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 passport.serializeUser<any, any>((user, done) => {
     done(null, user.id);
 });
@@ -24,6 +25,7 @@ passport.use(
         {
             clientID: [IOS_GOOGLE_CLIENT_ID, GOOGLE_CLIENT_ID],
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         function(parsedToken: any, googleId: string, done: any) {
             const {
                 email,
