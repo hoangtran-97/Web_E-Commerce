@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 
+import { fetchUsers, addUser } from "./user";
 import {
     User,
     ProductActions,
@@ -78,20 +79,21 @@ export const addProductDB = (
         const result = Array.from(
             new Set([{ quantity: 1, product: product._id }].concat(user.cart))
         );
-        const updateUser = { ...user, cart: [...result] };
+        const updatedUser = { ...user, cart: [...result] };
         console.log("current", user.cart);
-        console.log("updated", updateUser.cart);
+        console.log("updated", updatedUser.cart);
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "bearer " + token,
             },
-            body: JSON.stringify(updateUser),
+            body: JSON.stringify(updatedUser),
         })
             .then(response => response.json())
             .then(data => {
                 dispatch(addProduct({ quantity: 1, ...product }));
+                dispatch(addUser(data));
             })
             .catch(error => {
                 console.error("Error:", error);

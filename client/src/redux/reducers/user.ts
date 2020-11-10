@@ -9,7 +9,7 @@ import {
     User,
 } from "../../typings";
 
-export default function products(
+export default function users(
     state: UserState = {
         list: [],
         currentUser: {} as User,
