@@ -1,5 +1,10 @@
 import mongoose, { Document } from "mongoose";
 
+type ProductInfo = {
+    quantity: number;
+    product: mongoose.Types.ObjectId;
+};
+
 export type UserDocument = Document & {
     userName: string;
     firstName: string;
@@ -9,7 +14,7 @@ export type UserDocument = Document & {
     isBanned: boolean;
     password: string;
     googleId: string;
-    cart: string[];
+    cart: ProductInfo[];
 };
 
 const userSchema = new mongoose.Schema({
@@ -41,7 +46,12 @@ const userSchema = new mongoose.Schema({
     googleId: {
         type: String,
     },
-    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    cart: [
+        {
+            quantity: Number,
+            product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        },
+    ],
 });
 
 export default mongoose.model<UserDocument>("User", userSchema);

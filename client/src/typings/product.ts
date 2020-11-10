@@ -14,6 +14,9 @@ export type Product = {
     img: string;
     price: number;
 };
+export type ProductInCart = Product & {
+    quantity: number;
+};
 
 export type ReceiveProductsAction = {
     type: typeof RECEIVE_PRODUCTS;
@@ -61,6 +64,6 @@ export type ProductCardProps = {
     noFlag?: boolean;
 };
 export type ProductState = {
-    inCart: Product[];
+    inCart: ProductInCart[];
     list: Product[];
 };

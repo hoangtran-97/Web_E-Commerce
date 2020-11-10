@@ -30,7 +30,10 @@ export default function products(
             if (productExist) {
                 return state;
             }
-            return { ...state, inCart: [...state.inCart, product] };
+            return {
+                ...state,
+                inCart: [...state.inCart, { ...product, quantity: 1 }],
+            };
         }
         case ADD_PRODUCT_LIST: {
             const { product } = action.payload;

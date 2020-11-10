@@ -4,6 +4,11 @@ export const ADD_TOKEN = "ADD_TOKEN";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const AUTHORIZE_USERS = "AUTHORIZE_USERS";
 
+type ProductInfo = {
+    quantity: number;
+    product: string;
+};
+
 export type User = {
     _id: string;
     userName: string;
@@ -14,7 +19,7 @@ export type User = {
     isBanned: boolean;
     password: string;
     googleId: string;
-    cart: string[];
+    cart: ProductInfo[];
 };
 
 export type ReceiveUsersAction = {

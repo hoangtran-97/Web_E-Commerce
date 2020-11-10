@@ -9,6 +9,7 @@ import {
     REMOVE_USER,
     RECEIVE_USERS,
     AUTHORIZE_USERS,
+    ProductInCart,
 } from "../../typings";
 import { addProduct } from "../actions";
 
@@ -60,12 +61,15 @@ export const receiveUsers = (users: User[]): UserActions => {
 export const updateUser = (
     user: User,
     token: string,
-    cart: Product[],
+    cart: ProductInCart[],
     list: Product[]
 ) => {
     const { _id } = user;
     //Extracted IDs
-    const cartResult = cart.map(a => a._id);
+    const cartResult = cart.map(a => ({
+        quantity: a.quantity,
+        product: a._id,
+    }));
     //Unique Set
     const result = Array.from(new Set(cartResult.concat(user.cart)));
     const updateUser = { ...user, cart: [...result] };

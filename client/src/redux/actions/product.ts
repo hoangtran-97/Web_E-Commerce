@@ -74,7 +74,9 @@ export const addProductDB = (
     token: string
 ) => {
     return (dispatch: Dispatch) => {
-        const result = Array.from(new Set([product._id].concat(user.cart)));
+        const result = Array.from(
+            new Set([{ quantity: 0, product: product._id }].concat(user.cart))
+        );
         const updateUser = { ...user, cart: [...result] };
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT",
@@ -121,7 +123,7 @@ export const removeProductDB = (
     token: string
 ) => {
     return (dispatch: Dispatch) => {
-        const index = user.cart.findIndex(p => p === product._id);
+        const index = user.cart.findIndex(p => p.product === product._id);
         if (index >= 0) {
             user.cart.splice(index, 1);
         }
