@@ -46,7 +46,7 @@ export const ProductPage = () => {
                 if (_id) {
                     dispatch(addProductDB(currentUser, cartItem, _id, token));
                 } else {
-                    dispatch(addProduct(cartItem));
+                    dispatch(addProduct({ ...cartItem, quantity: 1 }));
                 }
             }
         },

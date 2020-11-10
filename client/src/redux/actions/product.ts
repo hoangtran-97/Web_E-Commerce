@@ -9,9 +9,10 @@ import {
     REMOVE_PRODUCT_LIST,
     ADD_PRODUCT,
     ADD_PRODUCT_LIST,
+    ProductInCart,
 } from "../../typings";
 
-export const addProduct = (product: Product): ProductActions => {
+export const addProduct = (product: ProductInCart): ProductActions => {
     return {
         type: ADD_PRODUCT,
         payload: {
@@ -78,9 +79,8 @@ export const addProductDB = (
             new Set([{ quantity: 1, product: product._id }].concat(user.cart))
         );
         const updateUser = { ...user, cart: [...result] };
-        console.log(user.cart);
-        console.log("cartDB", updateUser.cart);
-
+        console.log("current", user.cart);
+        console.log("updated", updateUser.cart);
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {
@@ -91,7 +91,7 @@ export const addProductDB = (
         })
             .then(response => response.json())
             .then(data => {
-                dispatch(addProduct(product));
+                dispatch(addProduct({ quantity: 1, ...product }));
             })
             .catch(error => {
                 console.error("Error:", error);
