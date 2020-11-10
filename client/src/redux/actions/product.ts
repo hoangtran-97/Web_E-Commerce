@@ -13,6 +13,7 @@ import {
     ProductInCart,
 } from "../../typings";
 
+//Add product to LOCAL cart
 export const addProduct = (product: ProductInCart): ProductActions => {
     return {
         type: ADD_PRODUCT,
@@ -21,7 +22,7 @@ export const addProduct = (product: ProductInCart): ProductActions => {
         },
     };
 };
-
+//Remove product from LOCAL cart
 export function removeProduct(product: Product): ProductActions {
     return {
         type: REMOVE_PRODUCT,
@@ -30,7 +31,7 @@ export function removeProduct(product: Product): ProductActions {
         },
     };
 }
-
+//Send all fetched products list items to LOCAL list
 export const receiveProducts = (products: Product[]): ProductActions => {
     return {
         type: RECEIVE_PRODUCTS,
@@ -39,7 +40,7 @@ export const receiveProducts = (products: Product[]): ProductActions => {
         },
     };
 };
-
+//Add to product list
 export const addProductList = (product: Product): ProductActions => {
     return {
         type: ADD_PRODUCT_LIST,
@@ -48,7 +49,7 @@ export const addProductList = (product: Product): ProductActions => {
         },
     };
 };
-
+//Remove from product list
 export const removeProductList = (product: Product): ProductActions => {
     return {
         type: REMOVE_PRODUCT_LIST,
@@ -60,6 +61,7 @@ export const removeProductList = (product: Product): ProductActions => {
 
 //TODO: Fix API link after upload
 //TODO: FIX addProductListDB using token both front and back-end
+//Fetch list items
 export const fetchProducts = () => {
     return (dispatch: Dispatch) => {
         return fetch("http://localhost:3001/api/v1/products").then(res =>
@@ -69,6 +71,7 @@ export const fetchProducts = () => {
         );
     };
 };
+//Add product to REMOTE cart
 export const addProductDB = (
     user: User,
     product: Product,
@@ -100,7 +103,7 @@ export const addProductDB = (
             });
     };
 };
-
+//Add product to REMOTE list
 export const addProductListDB = (product: Product) => {
     console.log("in action", JSON.stringify(product));
     return (dispatch: Dispatch) => {
@@ -120,7 +123,7 @@ export const addProductListDB = (product: Product) => {
             });
     };
 };
-
+//Remove product from REMOVE cart
 export const removeProductDB = (
     user: User,
     product: Product,
@@ -152,7 +155,7 @@ export const removeProductDB = (
             });
     };
 };
-
+//Remoe product from remote list
 export const removeProductListDB = (_id: string, product: Product) => {
     return (dispatch: Dispatch) => {
         return fetch(`http://localhost:3001/api/v1/products/${_id}`, {

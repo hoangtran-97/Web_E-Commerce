@@ -9,7 +9,6 @@ export const useProduct = (query: string) => {
     const dispatch = useDispatch();
     const products = useSelector((state: AppState) => state.product.list);
     useEffect(() => {
-        console.log("rendered");
         dispatch(fetchProducts());
     }, []);
     useEffect(() => {
