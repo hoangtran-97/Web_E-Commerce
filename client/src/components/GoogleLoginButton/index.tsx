@@ -12,6 +12,7 @@ export const GoogleLoginButton = () => {
     const cart = useSelector((state: AppState) => state.product.inCart);
     const list = useSelector((state: AppState) => state.product.list);
     const history = useHistory();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const responseGoogle = async (response: any) => {
         console.log("test", response);
         const res = await axios.post(

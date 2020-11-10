@@ -79,18 +79,11 @@ export const addProductDB = (
     token: string
 ) => {
     return (dispatch: Dispatch) => {
-        // const result = Array.from(
-        //     new Set([{ quantity: 1, product: product._id }].concat(user.cart))
-        // );
         let updatedUser = {};
-        const newProduct = { quantity: 1, product: product._id };
         const productExist = user.cart.find(p => p.product === product._id);
         if (productExist) {
             updatedUser = { ...user };
         } else {
-            // const result = [...user.cart];
-            // result.push(newProduct);
-
             const result = Array.from(
                 new Set(
                     [{ quantity: 1, product: product._id }].concat(user.cart)

@@ -14,6 +14,7 @@ import {
 } from "../../typings";
 import { addProduct } from "../actions";
 
+//Add LOCAL data
 export const addUser = (user: User): UserActions => {
     return {
         type: ADD_USER,
@@ -23,6 +24,7 @@ export const addUser = (user: User): UserActions => {
     };
 };
 
+//Remove LOCAl/Logout
 export const removeUser = (user: User): UserActions => {
     return {
         type: REMOVE_USER,
@@ -31,7 +33,7 @@ export const removeUser = (user: User): UserActions => {
         },
     };
 };
-
+//Ban/Unban
 export const authorizeUser = (user: User): UserActions => {
     return {
         type: AUTHORIZE_USERS,
@@ -49,7 +51,7 @@ export const addToken = (token: string): UserActions => {
         },
     };
 };
-
+//User list
 export const receiveUsers = (users: User[]): UserActions => {
     return {
         type: RECEIVE_USERS,
