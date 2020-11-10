@@ -4,7 +4,7 @@ export const ADD_TOKEN = "ADD_TOKEN";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const AUTHORIZE_USERS = "AUTHORIZE_USERS";
 
-type ProductInfo = {
+export type ProductInfo = {
     quantity: number;
     product: string;
 };

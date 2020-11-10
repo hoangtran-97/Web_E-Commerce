@@ -10,6 +10,7 @@ import {
     RECEIVE_USERS,
     AUTHORIZE_USERS,
     ProductInCart,
+    ProductInfo,
 } from "../../typings";
 import { addProduct } from "../actions";
 
@@ -84,13 +85,16 @@ export const updateUser = (
         })
             .then(response => response.json())
             .then(data => {
-                console.log("Success:", data);
+                console.log("Success update:", data);
                 dispatch(addUser(data));
 
-                // data.cart.forEach((item: string) => {
-                //     const result = list.find(p => p._id === item);
-                //     result && dispatch(addProduct(result));
-                // });
+                data.cart.forEach((item: ProductInfo) => {
+                    const result = list.find(p => p._id === item.product);
+                    result &&
+                        dispatch(
+                            addProduct({ ...result, quantity: item.quantity })
+                        );
+                });
             })
             .catch(error => {
                 console.error("Error:", error);
