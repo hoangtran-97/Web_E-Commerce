@@ -79,12 +79,27 @@ export const addProductDB = (
     token: string
 ) => {
     return (dispatch: Dispatch) => {
-        const result = Array.from(
-            new Set([{ quantity: 1, product: product._id }].concat(user.cart))
-        );
-        const updatedUser = { ...user, cart: [...result] };
-        console.log("current", user.cart);
-        console.log("updated", updatedUser.cart);
+        // const result = Array.from(
+        //     new Set([{ quantity: 1, product: product._id }].concat(user.cart))
+        // );
+        let updatedUser = {};
+        const newProduct = { quantity: 1, product: product._id };
+        const productExist = user.cart.find(p => p.product === product._id);
+        if (productExist) {
+            updatedUser = { ...user };
+        } else {
+            // const result = [...user.cart];
+            // result.push(newProduct);
+
+            const result = Array.from(
+                new Set(
+                    [{ quantity: 1, product: product._id }].concat(user.cart)
+                )
+            );
+            updatedUser = { ...user, cart: [...result] };
+            console.log(updatedUser);
+        }
+
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {

@@ -29,7 +29,9 @@ export default function makeStore(initialState = initState) {
     const localState = localStorage.getItem("initState");
     localState && (initialState = JSON.parse(localState));
     if (process.env.NODE_ENV === "development") {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if ((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             composeEnhancers = (window as any)
                 .__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
         }
@@ -43,7 +45,9 @@ export default function makeStore(initialState = initState) {
 
     sagaMiddleware.run(rootSaga);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if ((module as any).hot) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (module as any).hot.accept("./reducers", () => {
             const nextReducer = require("./reducers").default;
             store.replaceReducer(nextReducer);
