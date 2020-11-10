@@ -2,7 +2,7 @@ import User, { UserDocument } from "../models/User";
 
 const findAll = (): Promise<UserDocument[]> => {
     return User.find()
-        .populate("cart")
+        .populate("cart.product")
         .sort({ userName: 1 })
         .exec();
 };

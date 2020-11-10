@@ -11,6 +11,8 @@ export const Home = ({ query }: HomeProps) => {
     const [products] = useProduct(query);
     const { theme } = useContext(ThemeContext);
     const { currentUser } = useSelector((state: AppState) => state.user);
+    const { token } = useSelector((state: AppState) => state.user);
+    console.log(token);
     const { isBanned } = currentUser;
     const bg = { backgroundColor: theme.background };
     if (isBanned) {
