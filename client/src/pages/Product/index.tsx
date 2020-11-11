@@ -32,7 +32,6 @@ export const ProductPage = () => {
         },
         validationSchema,
         onSubmit: values => {
-            // alert(JSON.stringify(values, null, 2));
             if (product) {
                 const cartItem: Product = { ...product };
                 cartItem.sizes = [];
