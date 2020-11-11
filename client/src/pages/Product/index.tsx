@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -17,11 +17,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ProductPage = () => {
+    const [quantity, setQuantity] = useState(1);
     const { theme } = useContext(ThemeContext);
-    const fg = { backgroundColor: theme.foreground };
-    const bg = { backgroundColor: theme.background };
-    const tx = { color: theme.text };
-    const txfg = { color: theme.foreground };
     const { id } = useParams<RouteParam>();
     const product = useSelector((state: AppState) =>
         state.product.list.find(p => p._id === id)
@@ -51,6 +48,22 @@ export const ProductPage = () => {
             }
         },
     });
+
+    const fg = { backgroundColor: theme.foreground };
+    const bg = { backgroundColor: theme.background };
+    const tx = { color: theme.text };
+    const txfg = { color: theme.foreground };
+
+    const addQuantity = () => {
+        setQuantity(prev => (prev += 1));
+    };
+    const reduceQuantity = () => {
+        if (quantity === 0) {
+            return;
+        }
+        setQuantity(prev => (prev -= 1));
+    };
+
     if (!product) {
         return (
             <div className={styles.container} style={{ ...bg, ...tx }}>
@@ -161,6 +174,27 @@ export const ProductPage = () => {
                                 ? formik.errors.variants
                                 : null}
                         </div>
+                        <div className={styles.quantity__container}>
+                            <p className={styles.span}>Quantity: </p>
+                            <button
+                                type="button"
+                                className={styles.quantity__button}
+                                style={{ ...bg, ...tx }}
+                                onClick={addQuantity}
+                            >
+                                +
+                            </button>
+                            <p className={styles.span}>{quantity}</p>
+                            <button
+                                type="button"
+                                className={styles.quantity__button}
+                                style={{ ...bg, ...tx }}
+                                onClick={reduceQuantity}
+                            >
+                                -
+                            </button>
+                        </div>
+
                         <button
                             type="submit"
                             className={styles.button}
