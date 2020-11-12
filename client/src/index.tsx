@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 import App from "./App";
@@ -15,7 +15,7 @@ const store = makeStore();
 
 const WithProvider = () => (
     <Provider store={store}>
-        <ToastContainer autoClose={1500} hideProgressBar />
+        <ToastContainer autoClose={1500} hideProgressBar transition={Slide} />
         <Toast></Toast>
         <Router>
             <ScrollToTop></ScrollToTop>
