@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { usePalette } from "react-palette";
 
-import { AppState } from "../../typings";
-import { ProductCardProps } from "../../typings";
+import { ProductCardProps, AppState } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./ProductCard.module.css";
 
 export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
     const { theme } = useContext(ThemeContext);
     const cart = useSelector((state: AppState) => state.product.inCart);
-    const fg = { backgroundColor: theme.foreground };
-    const tx = { color: theme.text };
+
     const { name, price, img, _id } = product;
     const isInCart = cart.find(p => p.name === name);
-
+    const { data, loading, error } = usePalette(img);
+    const fg = { backgroundColor: data.vibrant };
+    const tx = { color: theme.text };
     return (
         <Link className={styles.container} style={fg} to={`/product/${_id}`}>
             <div className={styles.img__container}>
