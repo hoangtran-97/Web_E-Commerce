@@ -6,8 +6,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { addProduct, addProductDB } from "../../redux/actions";
-import { AppState, RouteParam, Product, ProductInCart } from "../../typings";
+import { addProduct, addProductDB, addToast } from "../../redux/actions";
+import { AppState, RouteParam, ProductInCart, IntentType } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
 
@@ -45,6 +45,12 @@ export const ProductPage = () => {
                 } else {
                     dispatch(addProduct({ ...cartItem }));
                 }
+                dispatch(
+                    addToast({
+                        message: `Added ${product.name} to cart.`,
+                        intent: IntentType.SUCCESS,
+                    })
+                );
             }
         },
     });
