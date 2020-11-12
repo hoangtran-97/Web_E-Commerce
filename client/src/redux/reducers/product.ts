@@ -32,7 +32,7 @@ export default function products(
             }
             return {
                 ...state,
-                inCart: [...state.inCart, { ...product, quantity: 1 }],
+                inCart: [...state.inCart, { ...product }],
             };
         }
         case ADD_PRODUCT_LIST: {

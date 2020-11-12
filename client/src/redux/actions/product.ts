@@ -74,7 +74,7 @@ export const fetchProducts = () => {
 //Add product to REMOTE cart
 export const addProductDB = (
     user: User,
-    product: Product,
+    product: ProductInCart,
     _id: string,
     token: string
 ) => {
@@ -86,7 +86,9 @@ export const addProductDB = (
         } else {
             const result = Array.from(
                 new Set(
-                    [{ quantity: 1, product: product._id }].concat(user.cart)
+                    [
+                        { quantity: product.quantity, product: product._id },
+                    ].concat(user.cart)
                 )
             );
             updatedUser = { ...user, cart: [...result] };
@@ -103,7 +105,7 @@ export const addProductDB = (
         })
             .then(response => response.json())
             .then(data => {
-                dispatch(addProduct({ quantity: 1, ...product }));
+                dispatch(addProduct(product));
                 dispatch(addUser(data));
             })
             .catch(error => {

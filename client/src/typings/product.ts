@@ -27,7 +27,7 @@ export type ReceiveProductsAction = {
 export type AddProductAction = {
     type: typeof ADD_PRODUCT;
     payload: {
-        product: Product;
+        product: ProductInCart;
     };
 };
 

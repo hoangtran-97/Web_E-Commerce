@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { addProduct, addProductDB } from "../../redux/actions";
-import { AppState, RouteParam, Product } from "../../typings";
+import { AppState, RouteParam, Product, ProductInCart } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
 
@@ -33,7 +33,8 @@ export const ProductPage = () => {
         validationSchema,
         onSubmit: values => {
             if (product) {
-                const cartItem: Product = { ...product };
+                const cartItem: ProductInCart = { ...product, ...{ quantity } };
+                console.log(cartItem);
                 cartItem.sizes = [];
                 cartItem.sizes.push(parseInt(values.sizes));
                 cartItem.variants = [];
@@ -42,7 +43,7 @@ export const ProductPage = () => {
                 if (_id) {
                     dispatch(addProductDB(currentUser, cartItem, _id, token));
                 } else {
-                    dispatch(addProduct({ ...cartItem, quantity: 1 }));
+                    dispatch(addProduct({ ...cartItem }));
                 }
             }
         },
@@ -179,21 +180,20 @@ export const ProductPage = () => {
                                 type="button"
                                 className={styles.quantity__button}
                                 style={{ ...bg, ...tx }}
-                                onClick={addQuantity}
+                                onClick={reduceQuantity}
                             >
-                                +
+                                -
                             </button>
                             <p className={styles.span}>{quantity}</p>
                             <button
                                 type="button"
                                 className={styles.quantity__button}
                                 style={{ ...bg, ...tx }}
-                                onClick={reduceQuantity}
+                                onClick={addQuantity}
                             >
-                                -
+                                +
                             </button>
                         </div>
-
                         <button
                             type="submit"
                             className={styles.button}
