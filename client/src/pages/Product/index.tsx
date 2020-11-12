@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import { Palette } from "react-palette";
 import {
     addProduct,
     addProductDB,
@@ -34,6 +34,7 @@ export const ProductPage = () => {
     );
     const { currentUser, token } = useSelector((state: AppState) => state.user);
     const dispatch = useDispatch();
+
     const formik = useFormik({
         initialValues: {
             sizes: "",
@@ -139,127 +140,180 @@ export const ProductPage = () => {
         categories,
     } = product;
     return (
-        <div className={styles.container} style={bg}>
-            <div className={styles.container__inner} style={fg}>
-                <div className={styles.img__container}>
-                    <img
-                        alt="product_image"
-                        className={styles.img}
-                        src={img}
-                    ></img>
-                </div>
-                <div className={styles.form}>
-                    <form onSubmit={formik.handleSubmit} style={tx}>
-                        <p>
-                            <span className={styles.span}>Product Name:</span>{" "}
-                            {name}
-                        </p>
-                        <p>
-                            <span className={styles.span}>
-                                Product Description:
-                            </span>{" "}
-                            {description}
-                        </p>
-                        <p>
-                            <span className={styles.span}>
-                                Product Category:
-                            </span>{" "}
-                            {categories}
-                        </p>
-                        <p>
-                            <span className={styles.span}>Price:</span> {price}{" "}
-                            EUR
-                        </p>
-                        <div className={styles.select}>
-                            <label htmlFor="sizes" className={styles.span}>
-                                Sizes:
-                            </label>
-                            <select
-                                name="sizes"
-                                id="sizes"
-                                value={formik.values.sizes}
-                                onChange={formik.handleChange}
-                            >
-                                <option
-                                    value=""
-                                    defaultValue=""
-                                    disabled
-                                    hidden
-                                >
-                                    Choose here
-                                </option>
-                                {sizes.map((size, index) => (
-                                    <option value={size} key={index}>
-                                        {size}
-                                    </option>
-                                ))}
-                            </select>
-                            {formik.errors.sizes ? formik.errors.sizes : null}
-                        </div>
-                        <div className={styles.select}>
-                            <label htmlFor="variants" className={styles.span}>
-                                Variants:
-                            </label>
-                            <select
-                                name="variants"
-                                id="variants"
-                                value={formik.values.variants}
-                                onChange={formik.handleChange}
-                            >
-                                <option
-                                    value=""
-                                    defaultValue=""
-                                    disabled
-                                    hidden
-                                >
-                                    Choose here
-                                </option>
-                                {variants.map((variant, index) => (
-                                    <option value={variant} key={index}>
-                                        {variant}
-                                    </option>
-                                ))}
-                            </select>
-                            {formik.errors.variants
-                                ? formik.errors.variants
-                                : null}
-                        </div>
-                        <div className={styles.quantity__container}>
-                            <p className={styles.span}>Quantity: </p>
-                            <button
-                                type="button"
-                                className={styles.quantity__button}
-                                style={{ ...bg, ...tx }}
-                                onClick={reduceQuantity}
-                            >
-                                -
-                            </button>
-                            <p className={styles.span}>{quantity}</p>
-                            <button
-                                type="button"
-                                className={styles.quantity__button}
-                                style={{ ...bg, ...tx }}
-                                onClick={addQuantity}
-                            >
-                                +
-                            </button>
-                        </div>
-                        <button
-                            type="submit"
-                            className={styles.button}
-                            style={{ ...bg, ...tx }}
+        <Palette src={img}>
+            {({ data, loading, error }) => (
+                <>
+                    {loading ? (
+                        <>
+                            <div>Test</div>
+                        </>
+                    ) : (
+                        <div
+                            className={styles.container}
+                            style={{ backgroundColor: data.lightVibrant }}
                         >
-                            Add to cart
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <Link type="button" to="/">
-                <AiOutlineArrowLeft
-                    className={styles.error__icon}
-                    style={txfg}
-                ></AiOutlineArrowLeft>
-            </Link>
-        </div>
+                            <div
+                                className={styles.container__inner}
+                                style={{ backgroundColor: data.vibrant }}
+                            >
+                                <div className={styles.img__container}>
+                                    <img
+                                        alt="product_image"
+                                        className={styles.img}
+                                        src={img}
+                                    ></img>
+                                </div>
+                                <div className={styles.form}>
+                                    <form
+                                        onSubmit={formik.handleSubmit}
+                                        style={tx}
+                                    >
+                                        <p>
+                                            <span className={styles.span}>
+                                                Product Name:
+                                            </span>{" "}
+                                            {name}
+                                        </p>
+                                        <p>
+                                            <span className={styles.span}>
+                                                Product Description:
+                                            </span>{" "}
+                                            {description}
+                                        </p>
+                                        <p>
+                                            <span className={styles.span}>
+                                                Product Category:
+                                            </span>{" "}
+                                            {categories}
+                                        </p>
+                                        <p>
+                                            <span className={styles.span}>
+                                                Price:
+                                            </span>{" "}
+                                            {price} EUR
+                                        </p>
+                                        <div className={styles.select}>
+                                            <label
+                                                htmlFor="sizes"
+                                                className={styles.span}
+                                            >
+                                                Sizes:
+                                            </label>
+                                            <select
+                                                name="sizes"
+                                                id="sizes"
+                                                value={formik.values.sizes}
+                                                onChange={formik.handleChange}
+                                            >
+                                                <option
+                                                    value=""
+                                                    defaultValue=""
+                                                    disabled
+                                                    hidden
+                                                >
+                                                    Choose here
+                                                </option>
+                                                {sizes.map((size, index) => (
+                                                    <option
+                                                        value={size}
+                                                        key={index}
+                                                    >
+                                                        {size}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            {formik.errors.sizes
+                                                ? formik.errors.sizes
+                                                : null}
+                                        </div>
+                                        <div className={styles.select}>
+                                            <label
+                                                htmlFor="variants"
+                                                className={styles.span}
+                                            >
+                                                Variants:
+                                            </label>
+                                            <select
+                                                name="variants"
+                                                id="variants"
+                                                value={formik.values.variants}
+                                                onChange={formik.handleChange}
+                                            >
+                                                <option
+                                                    value=""
+                                                    defaultValue=""
+                                                    disabled
+                                                    hidden
+                                                >
+                                                    Choose here
+                                                </option>
+                                                {variants.map(
+                                                    (variant, index) => (
+                                                        <option
+                                                            value={variant}
+                                                            key={index}
+                                                        >
+                                                            {variant}
+                                                        </option>
+                                                    )
+                                                )}
+                                            </select>
+                                            {formik.errors.variants
+                                                ? formik.errors.variants
+                                                : null}
+                                        </div>
+                                        <div
+                                            className={
+                                                styles.quantity__container
+                                            }
+                                        >
+                                            <p className={styles.span}>
+                                                Quantity:{" "}
+                                            </p>
+                                            <button
+                                                type="button"
+                                                className={
+                                                    styles.quantity__button
+                                                }
+                                                style={{ ...bg, ...tx }}
+                                                onClick={reduceQuantity}
+                                            >
+                                                -
+                                            </button>
+                                            <p className={styles.span}>
+                                                {quantity}
+                                            </p>
+                                            <button
+                                                type="button"
+                                                className={
+                                                    styles.quantity__button
+                                                }
+                                                style={{ ...bg, ...tx }}
+                                                onClick={addQuantity}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className={styles.button}
+                                            style={{ ...bg, ...tx }}
+                                        >
+                                            Add to cart
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <Link type="button" to="/">
+                                <AiOutlineArrowLeft
+                                    className={styles.error__icon}
+                                    style={{ color: data.vibrant }}
+                                ></AiOutlineArrowLeft>
+                            </Link>
+                        </div>
+                    )}
+                </>
+            )}
+        </Palette>
     );
 };

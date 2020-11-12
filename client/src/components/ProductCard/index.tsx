@@ -13,7 +13,7 @@ export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
 
     const { name, price, img, _id } = product;
     const isInCart = cart.find(p => p.name === name);
-    const { data, loading, error } = usePalette(img);
+    const { data } = usePalette(img);
     const fg = { backgroundColor: data.vibrant };
     const tx = { color: theme.text };
     return (
