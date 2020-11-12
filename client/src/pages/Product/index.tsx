@@ -144,9 +144,9 @@ export const ProductPage = () => {
             {({ data, loading, error }) => (
                 <>
                     {loading ? (
-                        <>
-                            <div>Test</div>
-                        </>
+                        <div style={bg} className={styles.container}>
+                            <div className="spinner">Test</div>
+                        </div>
                     ) : (
                         <div
                             className={styles.container}
