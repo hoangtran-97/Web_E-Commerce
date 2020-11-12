@@ -27,6 +27,6 @@ export const Toast = () => {
                 }
             }
         }
-    }, [message]);
+    }, [message, intent]);
     return null;
 };
