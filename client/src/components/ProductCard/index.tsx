@@ -45,7 +45,7 @@ export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
                     )}
                 </Link>
             ) : (
-                <div className="spinner"></div>
+                <div className="spinner" />
             )}
         </>
     );

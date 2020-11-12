@@ -145,7 +145,7 @@ export const ProductPage = () => {
                 <>
                     {loading ? (
                         <div style={bg} className={styles.container}>
-                            <div className="spinner">Test</div>
+                            <div className="spinner" />
                         </div>
                     ) : (
                         <div
