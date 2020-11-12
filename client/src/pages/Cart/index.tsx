@@ -11,7 +11,7 @@ export const Cart = () => {
     const cart = useSelector((state: AppState) => state.product.inCart);
     const bg = { backgroundColor: theme.background };
     const sum = cart.reduce((a, b) => a + b.price * b.quantity, 0);
-    console.log(sum);
+
     return (
         <div className={styles.container} style={bg}>
             <h2 className={styles.title}>Your shopping cart</h2>

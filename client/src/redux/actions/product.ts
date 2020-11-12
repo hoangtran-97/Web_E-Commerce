@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 
-import { fetchUsers, addUser } from "./user";
+import { addUser } from "./user";
 import {
     User,
     ProductActions,
@@ -83,7 +83,6 @@ export const addProductDB = (
         const productExist = user.cart.find(p => p.product === product._id);
         if (productExist) {
             updatedUser = { ...user };
-            console.log("API call product exist", updatedUser);
         } else {
             const result = Array.from(
                 new Set(
@@ -93,7 +92,6 @@ export const addProductDB = (
                 )
             );
             updatedUser = { ...user, cart: [...result] };
-            console.log("API call", updatedUser, _id);
         }
 
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
@@ -106,7 +104,6 @@ export const addProductDB = (
         })
             .then(response => response.json())
             .then(data => {
-                console.log("API result", data);
                 dispatch(addProduct(product));
                 if (data._id) {
                     dispatch(addUser(data));
