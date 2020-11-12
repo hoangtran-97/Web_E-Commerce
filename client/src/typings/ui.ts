@@ -17,6 +17,7 @@ export enum IntentType {
     SUCCESS = "SUCCESS",
     ERROR = "ERROR",
     INFO = "INFO",
+    WARNING = "WARNING",
 }
 
 export type ToastMessage = {

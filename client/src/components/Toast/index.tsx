@@ -19,6 +19,9 @@ export const Toast = () => {
                     case IntentType.INFO:
                         toast.info(message);
                         break;
+                    case IntentType.WARNING:
+                        toast.warning(message);
+                        break;
                     default:
                         toast(message);
                 }

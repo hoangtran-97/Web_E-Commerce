@@ -6,7 +6,13 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { addProduct, addProductDB, addToast } from "../../redux/actions";
+import {
+    addProduct,
+    addProductDB,
+    addToast,
+    removeProduct,
+    removeProductDB,
+} from "../../redux/actions";
 import { AppState, RouteParam, ProductInCart, IntentType } from "../../typings";
 import { ThemeContext } from "../../context";
 import styles from "./Product.module.css";
@@ -23,6 +29,9 @@ export const ProductPage = () => {
     const product = useSelector((state: AppState) =>
         state.product.list.find(p => p._id === id)
     );
+    const productIsInCart = useSelector((state: AppState) =>
+        state.product.inCart.find(p => p._id === id)
+    );
     const { currentUser, token } = useSelector((state: AppState) => state.user);
     const dispatch = useDispatch();
     const formik = useFormik({
@@ -34,23 +43,59 @@ export const ProductPage = () => {
         onSubmit: values => {
             if (product) {
                 const cartItem: ProductInCart = { ...product, ...{ quantity } };
-                console.log(cartItem);
                 cartItem.sizes = [];
                 cartItem.sizes.push(parseInt(values.sizes));
                 cartItem.variants = [];
                 cartItem.variants.push(values.variants);
                 const { _id } = currentUser;
-                if (_id) {
-                    dispatch(addProductDB(currentUser, cartItem, _id, token));
+                if (productIsInCart) {
+                    const updateCartConfirmation = window.confirm(
+                        "Product is already in cart, do you want to update your selection?"
+                    );
+                    if (updateCartConfirmation === true) {
+                        if (_id) {
+                            dispatch(
+                                removeProductDB(
+                                    currentUser,
+                                    product,
+                                    _id,
+                                    token
+                                )
+                            );
+                            addProductDB(currentUser, cartItem, _id, token);
+                        } else {
+                            dispatch(removeProduct(product));
+                            dispatch(addProduct({ ...cartItem }));
+                        }
+                        dispatch(
+                            addToast({
+                                message: `Updated ${product.name} in cart.`,
+                                intent: IntentType.INFO,
+                            })
+                        );
+                    } else {
+                        dispatch(
+                            addToast({
+                                message: "Your cart was not updated",
+                                intent: IntentType.WARNING,
+                            })
+                        );
+                    }
                 } else {
-                    dispatch(addProduct({ ...cartItem }));
+                    if (_id) {
+                        dispatch(
+                            addProductDB(currentUser, cartItem, _id, token)
+                        );
+                    } else {
+                        dispatch(addProduct({ ...cartItem }));
+                    }
+                    dispatch(
+                        addToast({
+                            message: `Added ${product.name} to cart.`,
+                            intent: IntentType.SUCCESS,
+                        })
+                    );
                 }
-                dispatch(
-                    addToast({
-                        message: `Added ${product.name} to cart.`,
-                        intent: IntentType.SUCCESS,
-                    })
-                );
             }
         },
     });
