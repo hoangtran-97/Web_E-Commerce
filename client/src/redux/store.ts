@@ -27,7 +27,13 @@ export default function makeStore(initialState = initState) {
     let composeEnhancers = compose;
     // localStorage.clear();
     const localState = localStorage.getItem("initState");
-    localState && (initialState = JSON.parse(localState));
+    if (localState) {
+        const newLocalState = JSON.parse(localState);
+        //Override local saved Toast
+        const modifiedLocalState = { ...newLocalState, ui: { toast: {} } };
+        initialState = modifiedLocalState;
+    }
+    // localState && (initialState = JSON.parse(localState));
     if (process.env.NODE_ENV === "development") {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if ((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {

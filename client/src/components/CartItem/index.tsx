@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { removeProduct, removeProductDB } from "../../redux/actions";
-import { CartItemProps, AppState } from "../../typings";
+import { removeProduct, removeProductDB, addToast } from "../../redux/actions";
+import { CartItemProps, AppState, IntentType } from "../../typings";
 import { ProductCard } from "../ProductCard";
 import { ThemeContext } from "../../context";
 import styles from "./CartItem.module.css";
@@ -20,6 +20,12 @@ export const CartItem = ({ item }: CartItemProps) => {
         } else {
             dispatch(removeProduct(item));
         }
+        dispatch(
+            addToast({
+                message: "Item removed from cart",
+                intent: IntentType.SUCCESS,
+            })
+        );
     };
     return (
         <div className={styles.container}>

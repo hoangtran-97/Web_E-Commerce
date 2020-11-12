@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import App from "./App";
 import makeStore from "./redux/store";
 import ScrollToTop from "./hooks/useToTop";
+import { Toast } from "./components/Toast";
 import "./index.css";
 
 const store = makeStore();
@@ -15,6 +16,7 @@ const store = makeStore();
 const WithProvider = () => (
     <Provider store={store}>
         <ToastContainer />
+        <Toast></Toast>
         <Router>
             <ScrollToTop></ScrollToTop>
             <App />

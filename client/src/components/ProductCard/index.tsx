@@ -18,7 +18,12 @@ export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
     return (
         <Link className={styles.container} style={fg} to={`/product/${_id}`}>
             <div className={styles.img__container}>
-                <img alt="product_image" className={styles.img} src={img}></img>
+                <img
+                    alt="product_image"
+                    className={styles.img}
+                    src={img}
+                    draggable="false"
+                ></img>
             </div>
             <p className={styles.name} style={tx}>
                 {name}
