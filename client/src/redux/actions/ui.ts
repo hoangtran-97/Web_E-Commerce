@@ -1,10 +1,19 @@
-import { TOGGLE_DIALOG, ToggleDialogAction, DialogType } from "../../typings";
+import { TOAST_MESSAGE, UiActions, ToastMessage } from "../../typings";
 
-export function toggleDialog(dialog: DialogType): ToggleDialogAction {
+// export function toggleDialog(dialog: DialogType): ToggleDialogAction {
+//     return {
+//         type: TOGGLE_DIALOG,
+//         payload: {
+//             dialog,
+//         },
+//     };
+// }
+
+export const addToast = (toast: ToastMessage): UiActions => {
     return {
-        type: TOGGLE_DIALOG,
+        type: TOAST_MESSAGE,
         payload: {
-            dialog,
+            toast,
         },
     };
-}
+};
