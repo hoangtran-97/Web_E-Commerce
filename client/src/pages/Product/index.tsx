@@ -65,12 +65,6 @@ export const ProductPage = () => {
                         } else {
                             dispatch(removeProduct(product));
                         }
-                        dispatch(
-                            addToast({
-                                message: `Updated ${product.name} in cart.`,
-                                intent: IntentType.INFO,
-                            })
-                        );
                     } else {
                         dispatch(
                             addToast({
@@ -78,21 +72,29 @@ export const ProductPage = () => {
                                 intent: IntentType.WARNING,
                             })
                         );
+                        return;
                     }
                 }
                 if (_id) {
-                    console.log("this still runs API");
                     dispatch(addProductDB(currentUser, cartItem, _id, token));
                 } else {
-                    console.log("this still runs");
                     dispatch(addProduct({ ...cartItem }));
                 }
-                dispatch(
-                    addToast({
-                        message: `Added ${product.name} to cart.`,
-                        intent: IntentType.SUCCESS,
-                    })
-                );
+                if (productIsInCart) {
+                    dispatch(
+                        addToast({
+                            message: `Updated ${product.name} in cart.`,
+                            intent: IntentType.INFO,
+                        })
+                    );
+                } else {
+                    dispatch(
+                        addToast({
+                            message: `Added ${product.name} to cart.`,
+                            intent: IntentType.SUCCESS,
+                        })
+                    );
+                }
             }
         },
     });
