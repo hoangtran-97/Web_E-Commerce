@@ -13,28 +13,40 @@ export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
 
     const { name, price, img, _id } = product;
     const isInCart = cart.find(p => p.name === name);
-    const { data } = usePalette(img);
+    const { data, loading } = usePalette(img);
     const fg = { backgroundColor: data.vibrant };
     const tx = { color: theme.text };
+
     return (
-        <Link className={styles.container} style={fg} to={`/product/${_id}`}>
-            <div className={styles.img__container}>
-                <img
-                    alt="product_image"
-                    className={styles.img}
-                    src={img}
-                    draggable="false"
-                ></img>
-            </div>
-            <p className={styles.name} style={tx}>
-                {name}
-            </p>
-            <p className={styles.price} style={tx}>{`${price} EUR`}</p>
-            {isInCart && !noFlag && (
-                <div className={styles.indicator} style={fg}>
-                    {isInCart.quantity}
-                </div>
+        <>
+            {!loading ? (
+                <Link
+                    className={styles.container}
+                    style={fg}
+                    to={`/product/${_id}`}
+                >
+                    {console.log("test")}
+                    <div className={styles.img__container}>
+                        <img
+                            alt="product_image"
+                            className={styles.img}
+                            src={img}
+                            draggable="false"
+                        ></img>
+                    </div>
+                    <p className={styles.name} style={tx}>
+                        {name}
+                    </p>
+                    <p className={styles.price} style={tx}>{`${price} EUR`}</p>
+                    {isInCart && !noFlag && (
+                        <div className={styles.indicator} style={fg}>
+                            {isInCart.quantity}
+                        </div>
+                    )}
+                </Link>
+            ) : (
+                <div className="spinner"></div>
             )}
-        </Link>
+        </>
     );
 };
