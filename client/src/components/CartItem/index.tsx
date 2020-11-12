@@ -23,7 +23,7 @@ export const CartItem = ({ item }: CartItemProps) => {
     };
     return (
         <div className={styles.container}>
-            <ProductCard product={item} key={item._id} noFlag />
+            <ProductCard product={item} key={item._id} />
             <button
                 className={styles.button}
                 style={{ ...fg, ...tx }}

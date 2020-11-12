@@ -25,7 +25,9 @@ export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
             </p>
             <p className={styles.price} style={tx}>{`${price} EUR`}</p>
             {isInCart && !noFlag && (
-                <div className={styles.indicator} style={fg}></div>
+                <div className={styles.indicator} style={fg}>
+                    {isInCart.quantity}
+                </div>
             )}
         </Link>
     );
