@@ -19,7 +19,9 @@ export const Cart = () => {
                 <h3 className={styles.title}>is empty!</h3>
             ) : (
                 <>
-                    <h3 className={styles.title}>Total cost: {sum} €</h3>
+                    <h3 className={styles.title}>
+                        Total cost: {sum.toFixed(2)} €
+                    </h3>
                     <div className={styles.container__cart}>
                         {cart.map(item => (
                             <CartItem key={item._id} item={item}></CartItem>

@@ -15,7 +15,7 @@ const store = makeStore();
 
 const WithProvider = () => (
     <Provider store={store}>
-        <ToastContainer />
+        <ToastContainer autoClose={1500} hideProgressBar />
         <Toast></Toast>
         <Router>
             <ScrollToTop></ScrollToTop>
