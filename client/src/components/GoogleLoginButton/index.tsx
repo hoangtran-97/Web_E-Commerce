@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import { AppState } from "../../typings";
-import { addToken, updateUser } from "../../redux/actions";
+import { AppState, IntentType } from "../../typings";
+import { addToast, addToken, updateUser } from "../../redux/actions";
 
 export const GoogleLoginButton = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state: AppState) => state.product.inCart);
     const list = useSelector((state: AppState) => state.product.list);
+
     const history = useHistory();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const responseGoogle = async (response: any) => {
@@ -24,6 +25,12 @@ export const GoogleLoginButton = () => {
         if (res.status === 200) {
             dispatch(updateUser(res.data.user, res.data.token, cart, list));
             dispatch(addToken(res.data.token));
+            dispatch(
+                addToast({
+                    message: `Logged in as ${res.data.user.userName}`,
+                    intent: IntentType.INFO,
+                })
+            );
             history.push("/");
         }
     };

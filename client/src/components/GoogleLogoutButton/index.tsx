@@ -3,8 +3,8 @@ import { GoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { removeUser } from "../../redux/actions";
-import { AppState } from "../../typings";
+import { removeUser, addToast } from "../../redux/actions";
+import { AppState, IntentType } from "../../typings";
 
 export const GoogleLogoutButton = () => {
     const { currentUser } = useSelector((state: AppState) => state.user);
@@ -13,6 +13,12 @@ export const GoogleLogoutButton = () => {
     const logout = async () => {
         history.push("/");
         dispatch(removeUser(currentUser));
+        dispatch(
+            addToast({
+                message: "Logged out",
+                intent: IntentType.INFO,
+            })
+        );
     };
     return (
         <GoogleLogout
