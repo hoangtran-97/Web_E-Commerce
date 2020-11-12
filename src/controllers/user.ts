@@ -100,7 +100,8 @@ export const updateUser = async (
         const updatedUser = await UserService.update(userId, update);
         res.json(updatedUser);
     } catch (error) {
-        next(new NotFoundError("User not found", error));
+        console.log("error here", error);
+        next(new NotFoundError("User not found update", error));
     }
 };
 export const forgotPassword = async (

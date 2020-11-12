@@ -62,10 +62,8 @@ export const ProductPage = () => {
                                     token
                                 )
                             );
-                            addProductDB(currentUser, cartItem, _id, token);
                         } else {
                             dispatch(removeProduct(product));
-                            dispatch(addProduct({ ...cartItem }));
                         }
                         dispatch(
                             addToast({
@@ -81,21 +79,20 @@ export const ProductPage = () => {
                             })
                         );
                     }
-                } else {
-                    if (_id) {
-                        dispatch(
-                            addProductDB(currentUser, cartItem, _id, token)
-                        );
-                    } else {
-                        dispatch(addProduct({ ...cartItem }));
-                    }
-                    dispatch(
-                        addToast({
-                            message: `Added ${product.name} to cart.`,
-                            intent: IntentType.SUCCESS,
-                        })
-                    );
                 }
+                if (_id) {
+                    console.log("this still runs API");
+                    dispatch(addProductDB(currentUser, cartItem, _id, token));
+                } else {
+                    console.log("this still runs");
+                    dispatch(addProduct({ ...cartItem }));
+                }
+                dispatch(
+                    addToast({
+                        message: `Added ${product.name} to cart.`,
+                        intent: IntentType.SUCCESS,
+                    })
+                );
             }
         },
     });

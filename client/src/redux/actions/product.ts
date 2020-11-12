@@ -83,6 +83,7 @@ export const addProductDB = (
         const productExist = user.cart.find(p => p.product === product._id);
         if (productExist) {
             updatedUser = { ...user };
+            console.log("API call product exist", updatedUser);
         } else {
             const result = Array.from(
                 new Set(
@@ -92,7 +93,7 @@ export const addProductDB = (
                 )
             );
             updatedUser = { ...user, cart: [...result] };
-            console.log(updatedUser);
+            console.log("API call", updatedUser, _id);
         }
 
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
@@ -105,8 +106,11 @@ export const addProductDB = (
         })
             .then(response => response.json())
             .then(data => {
+                console.log("API result", data);
                 dispatch(addProduct(product));
-                dispatch(addUser(data));
+                if (data._id) {
+                    dispatch(addUser(data));
+                }
             })
             .catch(error => {
                 console.error("Error:", error);
@@ -146,7 +150,7 @@ export const removeProductDB = (
             user.cart.splice(index, 1);
         }
         const updateUser = { ...user };
-        console.log(updateUser);
+        console.log("redux/action", updateUser);
 
         return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
             method: "PUT",

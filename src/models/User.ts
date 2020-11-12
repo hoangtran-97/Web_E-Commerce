@@ -17,41 +17,47 @@ export type UserDocument = Document & {
     cart: ProductInfo[];
 };
 
-const userSchema = new mongoose.Schema({
-    userName: {
-        type: String,
-        index: true,
-        required: true,
-    },
-    firstName: {
-        type: String,
-        required: true,
-    },
-    lastName: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-    },
-    isAdmin: {
-        type: Boolean,
-    },
-    isBanned: {
-        type: Boolean,
-    },
-    password: {
-        type: String,
-    },
-    googleId: {
-        type: String,
-    },
-    cart: [
-        {
-            quantity: Number,
-            product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+const userSchema = new mongoose.Schema(
+    {
+        userName: {
+            type: String,
+            index: true,
+            required: true,
         },
-    ],
-});
+        firstName: {
+            type: String,
+            required: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+        },
+        isAdmin: {
+            type: Boolean,
+        },
+        isBanned: {
+            type: Boolean,
+        },
+        password: {
+            type: String,
+        },
+        googleId: {
+            type: String,
+        },
+        cart: [
+            {
+                quantity: Number,
+                product: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Product",
+                },
+            },
+        ],
+    },
+    { versionKey: false }
+);
 
 export default mongoose.model<UserDocument>("User", userSchema);
