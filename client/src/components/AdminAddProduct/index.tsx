@@ -3,8 +3,8 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 
-import { addProductListDB } from "../../redux/actions";
-import { AdminAddProductProps } from "../../typings";
+import { addProductListDB, addToast } from "../../redux/actions";
+import { AdminAddProductProps, IntentType } from "../../typings";
 import styles from "./AdminAddProduct.module.css";
 
 const validationSchema = Yup.object().shape({
@@ -44,6 +44,17 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                 validationSchema={validationSchema}
                 onSubmit={values => {
                     dispatch(addProductListDB(values));
+                    dispatch(
+                        addToast({
+                            message: "Product Added to DB",
+                            intent: IntentType.SUCCESS,
+                        })
+                    );
+                    dispatch(
+                        addToast({
+                            message: "",
+                        })
+                    );
                 }}
             >
                 {({ values, errors, touched }) => (
@@ -89,46 +100,46 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                 <>
                                     {values.categories &&
                                     values.categories.length > 0 ? (
-                                            values.categories.map(
-                                                (category, index) => (
-                                                    <div key={category}>
-                                                        <Field
-                                                            name={`categories.${index}`}
-                                                        />
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                arrayHelpers.remove(
-                                                                    index
-                                                                )
-                                                            }
-                                                        >
+                                        values.categories.map(
+                                            (category, index) => (
+                                                <div key={category}>
+                                                    <Field
+                                                        name={`categories.${index}`}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            arrayHelpers.remove(
+                                                                index
+                                                            )
+                                                        }
+                                                    >
                                                         -
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                arrayHelpers.push(
-                                                                    ""
-                                                                )
-                                                            }
-                                                        >
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            arrayHelpers.push(
+                                                                ""
+                                                            )
+                                                        }
+                                                    >
                                                         +
-                                                        </button>
-                                                    </div>
-                                                )
+                                                    </button>
+                                                </div>
                                             )
-                                        ) : (
-                                            <button
-                                                className={styles.button__add}
-                                                type="button"
-                                                onClick={() =>
-                                                    arrayHelpers.push("")
-                                                }
-                                            >
+                                        )
+                                    ) : (
+                                        <button
+                                            className={styles.button__add}
+                                            type="button"
+                                            onClick={() =>
+                                                arrayHelpers.push("")
+                                            }
+                                        >
                                             Add a category
-                                            </button>
-                                        )}
+                                        </button>
+                                    )}
                                 </>
                             )}
                         </FieldArray>
@@ -143,46 +154,46 @@ export const AdminAddProduct = ({ token }: AdminAddProductProps) => {
                                 <>
                                     {values.variants &&
                                     values.variants.length > 0 ? (
-                                            values.variants.map(
-                                                (variant, index) => (
-                                                    <div key={variant}>
-                                                        <Field
-                                                            name={`variants.${index}`}
-                                                        />
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                arrayHelpers.remove(
-                                                                    index
-                                                                )
-                                                            }
-                                                        >
+                                        values.variants.map(
+                                            (variant, index) => (
+                                                <div key={variant}>
+                                                    <Field
+                                                        name={`variants.${index}`}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            arrayHelpers.remove(
+                                                                index
+                                                            )
+                                                        }
+                                                    >
                                                         -
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                arrayHelpers.push(
-                                                                    ""
-                                                                )
-                                                            }
-                                                        >
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            arrayHelpers.push(
+                                                                ""
+                                                            )
+                                                        }
+                                                    >
                                                         +
-                                                        </button>
-                                                    </div>
-                                                )
+                                                    </button>
+                                                </div>
                                             )
-                                        ) : (
-                                            <button
-                                                className={styles.button__add}
-                                                type="button"
-                                                onClick={() =>
-                                                    arrayHelpers.push("")
-                                                }
-                                            >
+                                        )
+                                    ) : (
+                                        <button
+                                            className={styles.button__add}
+                                            type="button"
+                                            onClick={() =>
+                                                arrayHelpers.push("")
+                                            }
+                                        >
                                             Add a variant
-                                            </button>
-                                        )}
+                                        </button>
+                                    )}
                                 </>
                             )}
                         </FieldArray>
