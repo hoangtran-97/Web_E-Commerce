@@ -6,24 +6,56 @@
 ```
 https://hoangtranxamk-e-commerce.netlify.app/
 ```
+## API deployed on Heroku 
+```
+https://hoangtranxamk-ecommerce-api.herokuapp.com
+```
+### User API 
+```
+/api/v1/users
+```
+### Product API
+```
+/api/v1/products
+```
 ## React Native repo 
 ```
 https://github.com/hoangtran-97/RN_E-Commerce
 ```
+## Front-end 
 Checkout at branch `master`
+```
+cd client 
+```
 ```
 yarn install
 ```
-``` 
-npm run ios/android 
+```
+yarn start
+```
+## Back-end 
+Checkout at branch `master`
+```
+npm run watch 
+```
+## Start both Front-end and Back-end 
+```
+npm run app
 ```
 
-## Technology involved 
+## Technology involved
+- Express
 - Formik 
 - Google Token API 
-- React Native 
-- React Navigation
+- MongoDB, Mongoose
+- React  
+- React Router 
 - Redux
-- REST API 
-
+- REST API
+## Todo 
+-   [x] Site is live 
+-   [x] TypeScript
+-   [ ] Refactor 
+-   [ ] Optimization
+-   [ ] Unit Testing
       
