@@ -16,12 +16,9 @@ export const GoogleLoginButton = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const responseGoogle = async (response: any) => {
         console.log("test", response);
-        const res = await axios.post(
-            "http://localhost:3001/api/v1/auth/googleTokenId",
-            {
-                id_token: response.tokenId,
-            }
-        );
+        const res = await axios.post("/api/v1/auth/googleTokenId", {
+            id_token: response.tokenId,
+        });
         if (res.status === 200) {
             dispatch(updateUser(res.data.user, res.data.token, cart, list));
             dispatch(addToken(res.data.token));

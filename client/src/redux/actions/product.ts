@@ -64,7 +64,7 @@ export const removeProductList = (product: Product): ProductActions => {
 //Fetch list items
 export const fetchProducts = () => {
     return (dispatch: Dispatch) => {
-        return fetch("http://localhost:3001/api/v1/products").then(res =>
+        return fetch("/api/v1/products").then(res =>
             res.json().then(products => {
                 dispatch(receiveProducts(products));
             })
@@ -94,7 +94,7 @@ export const addProductDB = (
             updatedUser = { ...user, cart: [...result] };
         }
 
-        return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
+        return fetch(`/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export const addProductDB = (
 export const addProductListDB = (product: Product) => {
     console.log("in action", JSON.stringify(product));
     return (dispatch: Dispatch) => {
-        return fetch("http://localhost:3001/api/v1/products/", {
+        return fetch("/api/v1/products/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -149,7 +149,7 @@ export const removeProductDB = (
         const updateUser = { ...user };
         console.log("redux/action", updateUser);
 
-        return fetch(`http://localhost:3001/api/v1/users/${_id}`, {
+        return fetch(`/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -169,7 +169,7 @@ export const removeProductDB = (
 //Remoe product from remote list
 export const removeProductListDB = (_id: string, product: Product) => {
     return (dispatch: Dispatch) => {
-        return fetch(`http://localhost:3001/api/v1/products/${_id}`, {
+        return fetch(`/api/v1/products/${_id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
