@@ -10,7 +10,7 @@
     "license": "MIT",
     "scripts": {
         "start": "npm run serve",
-        "build": "npm run build-sass && npm run build-ts && npm run lint && npm run copy-static-assets",
+        "build": "tsc",
         "serve": "node dist/server.js",
         "app": "concurrently --kill-others \"npm run watch\" \"cd client && npm run start\"",
         "watch-node": "nodemon dist/server.js",
