@@ -1,24 +1,17 @@
 import express from "express";
 import compression from "compression";
-import session from "express-session";
 import bodyParser from "body-parser";
 import lusca from "lusca";
-import mongo from "connect-mongo";
-import flash from "express-flash";
-import path from "path";
-import mongoose from "mongoose";
 import passport from "passport";
-import bluebird from "bluebird";
-import cors from "cors";
 
-import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
+import cors from "cors";
 
 import userRouter from "./routers/user";
 import productRouter from "./routers/product";
 import authRouter from "./routers/auth";
 
 import apiErrorHandler from "./middlewares/apiErrorHandler";
-import apiContentType from "./middlewares/apiContentType";
+
 import "./config/passport";
 
 const app = express();
