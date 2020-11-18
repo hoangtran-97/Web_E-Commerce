@@ -15,7 +15,7 @@ import apiErrorHandler from "./middlewares/apiErrorHandler";
 import "./config/passport";
 
 const app = express();
-
+app.use(express.static("build"));
 // Express configuration
 app.set("port", process.env.PORT || 3001);
 
