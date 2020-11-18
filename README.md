@@ -17,6 +17,9 @@ https://hoangtranxamk-ecommerce-api.herokuapp.com
 /api/v1/products
 ```
 ## [React Native repo](https://github.com/hoangtran-97/RN_E-Commerce) 
+```
+https://github.com/hoangtran-97/RN_E-Commerce
+```
 
 ## Front-end 
 Checkout at branch `master`
