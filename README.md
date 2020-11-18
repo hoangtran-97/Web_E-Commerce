@@ -51,6 +51,8 @@ npm run app
 - React Router 
 - Redux
 - REST API
+- Docker 
+- CI/CD with Github Actions
 ## Todo 
 - [x] Site is live 
 - [x] TypeScript
