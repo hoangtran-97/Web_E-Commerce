@@ -13,6 +13,7 @@ import {
     ProductInfo,
 } from "../../typings";
 import { addProduct } from "../actions";
+import { BASE } from "../../api";
 
 //Add LOCAL data
 export const addUser = (user: User): UserActions => {
@@ -77,7 +78,7 @@ export const updateUser = (
     const result = Array.from(new Set(cartResult.concat(user.cart)));
     const updateUser = { ...user, cart: [...result] };
     return (dispatch: Dispatch) => {
-        fetch(`/api/v1/users/${_id}`, {
+        fetch(`${BASE}/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -106,7 +107,7 @@ export const updateUser = (
 
 export const fetchUsers = () => {
     return (dispatch: Dispatch) => {
-        return fetch("/api/v1/users/").then(res =>
+        return fetch(`${BASE}/api/v1/users/`).then(res =>
             res.json().then(users => {
                 dispatch(receiveUsers(users));
             })
@@ -123,7 +124,7 @@ export const authorizeUserDB = (
     return (dispatch: Dispatch) => {
         const updateUser = { ...user, isBanned: `${banStatus}` };
 
-        return fetch(`/api/v1/users/${_id}`, {
+        return fetch(`${BASE}/api/v1/users/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -25,7 +25,6 @@ export const ProductCard = ({ product, noFlag }: ProductCardProps) => {
                     style={fg}
                     to={`/product/${_id}`}
                 >
-                    {console.log("test")}
                     <div className={styles.img__container}>
                         <img
                             alt="product_image"

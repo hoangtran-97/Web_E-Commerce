@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { AppState, IntentType } from "../../typings";
 import { addToast, addToken, updateUser } from "../../redux/actions";
+import { BASE } from "../../api";
 
 export const GoogleLoginButton = () => {
     const dispatch = useDispatch();
@@ -15,10 +16,11 @@ export const GoogleLoginButton = () => {
     const history = useHistory();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const responseGoogle = async (response: any) => {
-        console.log("test", response);
-        const res = await axios.post("/api/v1/auth/googleTokenId", {
+        console.log("Google RES", response);
+        const res = await axios.post(`${BASE}/api/v1/auth/googleTokenId`, {
             id_token: response.tokenId,
         });
+        console.log("API RES", res);
         if (res.status === 200) {
             dispatch(updateUser(res.data.user, res.data.token, cart, list));
             dispatch(addToken(res.data.token));
