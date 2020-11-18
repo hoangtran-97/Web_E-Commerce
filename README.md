@@ -3,9 +3,7 @@
 ## Online E-Commerce store, also available for iOS and Android 
 
 ## Web version
-```
-https://hoangtranxamk-e-commerce.netlify.app/
-```
+[https://hoangtranxamk-e-commerce.netlify.app/](https://hoangtranxamk-e-commerce.netlify.app/)
 ## API deployed on Heroku 
 ```
 https://hoangtranxamk-ecommerce-api.herokuapp.com
@@ -53,9 +51,9 @@ npm run app
 - Redux
 - REST API
 ## Todo 
--   [x] Site is live 
--   [x] TypeScript
--   [ ] Refactor 
--   [ ] Optimization
--   [ ] Unit Testing
+- [x] Site is live 
+- [x] TypeScript
+- [ ] Refactor 
+- [ ] Optimization
+- [ ] Unit Testing
       
