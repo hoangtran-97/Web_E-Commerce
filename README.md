@@ -53,6 +53,7 @@ npm run app
 ## Todo 
 - [x] Site is live 
 - [x] TypeScript
+- [ ] Populate E-commerce store
 - [ ] Refactor 
 - [ ] Optimization
 - [ ] Unit Testing
